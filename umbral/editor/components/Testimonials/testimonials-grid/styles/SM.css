@@ -1,0 +1,33 @@
+/* Testimonials Grid Small Screen Styles (SM) */
+#{{ component_id }} {
+    padding: 3rem 1.5rem;
+}
+
+#{{ component_id }} .testimonials-grid-container {
+    gap: 2.5rem;
+}
+
+#{{ component_id }} .testimonial-card {
+    padding: 2.5rem;
+}
+
+#{{ component_id }} .section-title {
+    font-size: 2.5rem;
+}
+
+#{{ component_id }} .testimonial-quote p {
+    font-size: 1.2rem;
+}
+
+#{{ component_id }} .author-avatar img {
+    width: 60px;
+    height: 60px;
+}
+
+#{{ component_id }} .author-name {
+    font-size: 1.1rem;
+}
+
+#{{ component_id }} .company-logo img {
+    height: 28px;
+}

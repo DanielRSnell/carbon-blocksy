@@ -1,0 +1,147 @@
+/* Pricing Card Base Styles (LG) - Desktop First */
+#{{ component_id }} {
+    position: relative;
+    border-radius: 20px;
+    padding: 3.5rem;
+    max-width: 480px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#{{ component_id }}.style-outlined {
+    border: 2px solid var(--border-color);
+    background: transparent;
+}
+
+#{{ component_id }}.style-elevated {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+    border: none;
+}
+
+#{{ component_id }}.is-popular {
+    transform: scale(1.05);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+}
+
+#{{ component_id }} .pricing-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.75rem 2rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+#{{ component_id }} .pricing-header {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+#{{ component_id }} .plan-name {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin: 0 0 0.75rem 0;
+}
+
+#{{ component_id }} .plan-subtitle {
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    margin: 0;
+    line-height: 1.4;
+}
+
+#{{ component_id }} .pricing-price {
+    text-align: center;
+    padding: 1rem 0;
+}
+
+#{{ component_id }} .plan-price {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.25rem;
+}
+
+#{{ component_id }} .currency {
+    font-size: 2.25rem;
+    font-weight: 600;
+}
+
+#{{ component_id }} .amount {
+    font-size: 4.5rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+#{{ component_id }} .period {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+#{{ component_id }} .pricing-features {
+    flex: 1;
+}
+
+#{{ component_id }} .features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+#{{ component_id }} .feature-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.1rem;
+    line-height: 1.4;
+}
+
+#{{ component_id }} .feature-item::before {
+    content: "✓";
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background-color: var(--primary-light);
+    font-weight: bold;
+    font-size: 0.95rem;
+    flex-shrink: 0;
+}
+
+#{{ component_id }} .pricing-footer {
+    margin-top: auto;
+}
+
+#{{ component_id }} .pricing-button {
+    display: block;
+    width: 100%;
+    padding: 1.5rem 3rem;
+    border-radius: 12px;
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#{{ component_id }}:hover {
+    transform: translateY(-4px);
+}
+
+#{{ component_id }}.is-popular:hover {
+    transform: scale(1.05) translateY(-4px);
+}

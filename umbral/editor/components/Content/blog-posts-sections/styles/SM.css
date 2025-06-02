@@ -1,0 +1,13 @@
+/* Blog Posts Small Breakpoint (SM) */
+#{{ component_id }}.layout-grid .posts-container {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.5rem;
+}
+
+#{{ component_id }} .post-content {
+    padding: 1.25rem;
+}
+
+#{{ component_id }} .post-title {
+    font-size: 1.1rem;
+}

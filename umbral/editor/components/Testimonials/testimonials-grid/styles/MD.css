@@ -1,0 +1,35 @@
+/* Testimonial Card Medium Screen Styles (MD) */
+#{{ component_id }} {
+    padding: 3rem;
+    max-width: 600px;
+}
+
+#{{ component_id }} .testimonial-content {
+    gap: 2rem;
+}
+
+#{{ component_id }} .testimonial-quote p {
+    font-size: 1.3rem;
+    line-height: 1.7;
+}
+
+#{{ component_id }} .star {
+    font-size: 1.4rem;
+}
+
+#{{ component_id }} .author-avatar img {
+    width: 70px;
+    height: 70px;
+}
+
+#{{ component_id }} .author-name {
+    font-size: 1.2rem;
+}
+
+#{{ component_id }} .author-title {
+    font-size: 1rem;
+}
+
+#{{ component_id }} .company-logo img {
+    height: 32px;
+}

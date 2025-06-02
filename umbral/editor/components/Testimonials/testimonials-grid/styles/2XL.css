@@ -1,0 +1,39 @@
+/* Testimonial Card 2X Large Screen Styles (2XL) */
+#{{ component_id }} {
+    padding: 5rem;
+    max-width: 900px;
+}
+
+#{{ component_id }} .testimonial-content {
+    gap: 3rem;
+}
+
+#{{ component_id }} .testimonial-quote p {
+    font-size: 1.6rem;
+    line-height: 1.9;
+}
+
+#{{ component_id }} .star {
+    font-size: 1.8rem;
+}
+
+#{{ component_id }} .testimonial-author {
+    gap: 2rem;
+}
+
+#{{ component_id }} .author-avatar img {
+    width: 100px;
+    height: 100px;
+}
+
+#{{ component_id }} .author-name {
+    font-size: 1.5rem;
+}
+
+#{{ component_id }} .author-title {
+    font-size: 1.2rem;
+}
+
+#{{ component_id }} .company-logo img {
+    height: 44px;
+}

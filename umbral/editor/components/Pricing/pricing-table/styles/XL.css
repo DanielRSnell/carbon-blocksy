@@ -1,0 +1,36 @@
+/* Pricing Card Extra Large Screen Styles (XL) */
+#{{ component_id }} {
+    padding: 4rem;
+    max-width: 520px;
+}
+
+#{{ component_id }} .plan-name {
+    font-size: 2.5rem;
+}
+
+#{{ component_id }} .plan-subtitle {
+    font-size: 1.3rem;
+}
+
+#{{ component_id }} .amount {
+    font-size: 5rem;
+}
+
+#{{ component_id }} .currency {
+    font-size: 2.5rem;
+}
+
+#{{ component_id }} .feature-item {
+    font-size: 1.15rem;
+}
+
+#{{ component_id }} .feature-item::before {
+    width: 28px;
+    height: 28px;
+    font-size: 1rem;
+}
+
+#{{ component_id }} .pricing-button {
+    padding: 1.75rem 3.5rem;
+    font-size: 1.3rem;
+}

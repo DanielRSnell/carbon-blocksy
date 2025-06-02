@@ -1,0 +1,229 @@
+/* Blog Posts Base Default Styles (LG) */
+#{{ component_id }} {
+    padding: 4rem 2rem;
+    width: 100%;
+}
+
+#{{ component_id }} .blog-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#{{ component_id }} .section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0 0 1rem 0;
+    line-height: 1.2;
+}
+
+#{{ component_id }} .section-subtitle {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 0;
+    opacity: 0.9;
+}
+
+#{{ component_id }} .posts-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#{{ component_id }} .post-card {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 400px;
+}
+
+#{{ component_id }} .post-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+#{{ component_id }} .post-image {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+}
+
+#{{ component_id }} .post-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+#{{ component_id }} .post-image:hover img {
+    transform: scale(1.05);
+}
+
+#{{ component_id }} .post-content {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    justify-content: space-between;
+}
+
+#{{ component_id }} .post-categories {
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+#{{ component_id }} .post-category a {
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+#{{ component_id }} .post-category a:hover {
+    opacity: 0.8;
+}
+
+#{{ component_id }} .post-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.3;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+#{{ component_id }} .post-title a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+#{{ component_id }} .post-title a:hover {
+    color: var(--hover-color);
+}
+
+#{{ component_id }} .post-meta {
+    font-size: 0.85rem;
+    font-weight: 500;
+    flex-shrink: 0;
+}
+
+#{{ component_id }} .post-excerpt {
+    flex: 1;
+}
+
+#{{ component_id }} .post-excerpt p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+#{{ component_id }} .post-actions {
+    margin-top: auto;
+    padding-top: 1rem;
+    flex-shrink: 0;
+}
+
+#{{ component_id }} .read-more-btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    text-align: center;
+    min-width: 120px;
+}
+
+#{{ component_id }} .no-posts {
+    text-align: center;
+    padding: 3rem;
+    color: var(--text-secondary);
+}
+
+/* Grid Layout Responsive */
+#{{ component_id }}.layout-grid.cols-2 .posts-container {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+#{{ component_id }}.layout-grid.cols-3 .posts-container {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+#{{ component_id }}.layout-grid.cols-4 .posts-container {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+/* List Layout */
+#{{ component_id }}.layout-list .posts-container {
+    gap: 1.5rem;
+    grid-template-columns: 1fr;
+}
+
+#{{ component_id }}.layout-list .post-card {
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+#{{ component_id }}.layout-list .post-image {
+    aspect-ratio: 4/3;
+    width: 300px;
+    flex-shrink: 0;
+}
+
+#{{ component_id }}.layout-list .post-content {
+    padding: 1rem 1.5rem;
+}
+
+/* Masonry Layout (basic) */
+#{{ component_id }}.layout-masonry .posts-container {
+    column-count: 3;
+    column-gap: 3rem;
+    grid-template-columns: none;
+    display: block;
+}
+
+#{{ component_id }}.layout-masonry.cols-2 .posts-container {
+    column-count: 2;
+}
+
+#{{ component_id }}.layout-masonry.cols-3 .posts-container {
+    column-count: 3;
+}
+
+#{{ component_id }}.layout-masonry.cols-4 .posts-container {
+    column-count: 4;
+}
+
+#{{ component_id }}.layout-masonry .post-card {
+    break-inside: avoid;
+    margin-bottom: 2rem;
+}
+
+/* Carousel Layout (basic - would need JS for full functionality) */
+#{{ component_id }}.layout-carousel .posts-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1.5rem;
+    padding-bottom: 1rem;
+    grid-template-columns: none;
+}
+
+#{{ component_id }}.layout-carousel .post-card {
+    flex: 0 0 350px;
+    scroll-snap-align: start;
+}

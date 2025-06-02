@@ -1,0 +1,24 @@
+/* Hero-2 Extra Large Screen Styles (XL) */
+#{{ component_id }} {
+    padding: 8rem 3rem;
+}
+
+#{{ component_id }} .hero-container {
+    max-width: 1400px;
+}
+
+#{{ component_id }} .hero-content {
+    gap: 6rem;
+}
+
+#{{ component_id }} .hero-title {
+    font-size: 4rem;
+}
+
+#{{ component_id }} .hero-subtitle {
+    font-size: 1.5rem;
+}
+
+#{{ component_id }} .hero-image img {
+    max-width: 800px;
+}

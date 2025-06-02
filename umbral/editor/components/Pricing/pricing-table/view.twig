@@ -1,0 +1,142 @@
+{# Pricing Card Component Template #}
+
+{# Component Styles #}
+<style id="{{ component_id }}-styles">
+/* Component-specific dynamic styles */
+#{{ component_id }} {
+    {% if color_scheme == 'blue' %}
+        --primary-color: #3b82f6;
+        --primary-light: #dbeafe;
+        --primary-dark: #1d4ed8;
+    {% elseif color_scheme == 'purple' %}
+        --primary-color: #8b5cf6;
+        --primary-light: #ede9fe;
+        --primary-dark: #7c3aed;
+    {% elseif color_scheme == 'green' %}
+        --primary-color: #10b981;
+        --primary-light: #d1fae5;
+        --primary-dark: #059669;
+    {% elseif color_scheme == 'orange' %}
+        --primary-color: #f59e0b;
+        --primary-light: #fef3c7;
+        --primary-dark: #d97706;
+    {% else %}
+        --primary-color: #6b7280;
+        --primary-light: #f3f4f6;
+        --primary-dark: #374151;
+    {% endif %}
+    
+    --text-color: #1f2937;
+    --text-secondary: #6b7280;
+    --border-color: #e5e7eb;
+    --bg-color: #ffffff;
+}
+
+{% if card_style == 'gradient' %}
+#{{ component_id }} {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    --text-color: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.8);
+    --border-color: transparent;
+}
+{% endif %}
+
+#{{ component_id }} {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+#{{ component_id }} .pricing-badge {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+#{{ component_id }} .plan-price .currency,
+#{{ component_id }} .plan-price .amount {
+    color: var(--primary-color);
+}
+
+{% if card_style == 'gradient' %}
+#{{ component_id }} .plan-price .currency,
+#{{ component_id }} .plan-price .amount {
+    color: white;
+}
+{% endif %}
+
+#{{ component_id }} .pricing-button {
+    background-color: var(--primary-color);
+    color: white;
+    border: 2px solid var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+#{{ component_id }} .pricing-button:hover {
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+#{{ component_id }} .feature-item::before {
+    color: var(--primary-color);
+}
+
+{# Compiled responsive styles from PHP #}
+{{ compiled_styles|raw }}
+</style>
+
+{# Pricing Card Component HTML #}
+<div id="{{ component_id }}" class="umbral-pricing pricing-card style-{{ card_style }} color-{{ color_scheme }}{% if is_popular %} is-popular{% endif %}">
+    {% if is_popular and badge_text %}
+    <div class="pricing-badge">
+        {{ badge_text }}
+    </div>
+    {% endif %}
+    
+    <div class="pricing-header">
+        {% if plan_name %}
+        <h3 class="plan-name">{{ plan_name }}</h3>
+        {% endif %}
+        
+        {% if plan_subtitle %}
+        <p class="plan-subtitle">{{ plan_subtitle }}</p>
+        {% endif %}
+    </div>
+    
+    <div class="pricing-price">
+        <div class="plan-price">
+            {% if price_currency %}
+            <span class="currency">{{ price_currency }}</span>
+            {% endif %}
+            {% if price %}
+            <span class="amount">{{ price }}</span>
+            {% endif %}
+            {% if price_period %}
+            <span class="period">/ {{ price_period }}</span>
+            {% endif %}
+        </div>
+    </div>
+    
+    {% if features %}
+    <div class="pricing-features">
+        <ul class="features-list">
+            {% for feature in features %}
+            <li class="feature-item">{{ feature }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    
+    {% if button_text and button_url %}
+    <div class="pricing-footer">
+        <a href="{{ button_url }}" class="pricing-button">
+            {{ button_text }}
+        </a>
+    </div>
+    {% endif %}
+</div>
+
+{# Component JavaScript #}
+<script id="{{ component_id }}-js">
+{{ compiled_scripts|raw }}
+</script>

@@ -1,0 +1,26 @@
+/* Testimonial Card Extra Large Screen Styles (XL) */
+#{{ component_id }} {
+    padding: 4rem;
+    max-width: 800px;
+}
+
+#{{ component_id }} .testimonial-quote p {
+    font-size: 1.5rem;
+}
+
+#{{ component_id }} .star {
+    font-size: 1.6rem;
+}
+
+#{{ component_id }} .author-avatar img {
+    width: 90px;
+    height: 90px;
+}
+
+#{{ component_id }} .author-name {
+    font-size: 1.4rem;
+}
+
+#{{ component_id }} .company-logo img {
+    height: 40px;
+}

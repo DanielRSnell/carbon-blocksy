@@ -1,0 +1,78 @@
+{# Hero-2 Component Template - Split Layout #}
+
+{# Convert attachment ID to Timber Image object #}
+{% if hero_image %}
+    {% set hero_img = Image(hero_image) %}
+{% endif %}
+
+{# Component Styles #}
+<style id="{{ component_id }}-styles">
+/* Component-specific dynamic styles */
+#{{ component_id }} {
+    --bg-color: {% if background_color == 'white' %}#ffffff{% elseif background_color == 'light-gray' %}#f8f9fa{% elseif background_color == 'dark' %}#1a1a1a{% else %}linear-gradient(135deg, #667eea 0%, #764ba2 100%){% endif %};
+    --text-color: {% if background_color == 'dark' %}#ffffff{% else %}#1a1a1a{% endif %};
+    --text-secondary: {% if background_color == 'dark' %}rgba(255,255,255,0.8){% else %}#50575e{% endif %};
+}
+
+#{{ component_id }} {
+    background: var(--bg-color);
+    color: var(--text-color);
+}
+
+#{{ component_id }} .hero-subtitle {
+    color: var(--text-secondary);
+}
+
+{# Compiled responsive styles from PHP #}
+{{ compiled_styles|raw }}
+</style>
+
+{# Hero Component HTML #}
+<section id="{{ component_id }}" class="umbral-hero hero-2 layout-{{ layout }}">
+    <div class="hero-container">
+        <div class="hero-content">
+            <div class="hero-text">
+                {% if title %}
+                <h1 class="hero-title">{{ title }}</h1>
+                {% endif %}
+                
+                {% if subtitle %}
+                <p class="hero-subtitle">{{ subtitle }}</p>
+                {% endif %}
+                
+                {% if button_text or secondary_button_text %}
+                <div class="hero-actions">
+                    {% if button_text and button_url %}
+                        {% include '@primitives/button.twig' with {
+                            text: button_text,
+                            url: button_url,
+                            variant: 'primary',
+                            size: 'large'
+                        } %}
+                    {% endif %}
+                    
+                    {% if secondary_button_text and secondary_button_url %}
+                        {% include '@primitives/button.twig' with {
+                            text: secondary_button_text,
+                            url: secondary_button_url,
+                            variant: 'secondary',
+                            size: 'large'
+                        } %}
+                    {% endif %}
+                </div>
+                {% endif %}
+            </div>
+            
+            {% if hero_img %}
+            <div class="hero-image">
+                <img src="{{ hero_img.src }}" alt="{{ hero_img.alt or title }}" loading="lazy">
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+{# Component JavaScript #}
+<script id="{{ component_id }}-js">
+{{ compiled_scripts|raw }}
+</script>

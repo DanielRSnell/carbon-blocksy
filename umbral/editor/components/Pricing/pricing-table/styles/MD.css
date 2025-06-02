@@ -1,0 +1,39 @@
+/* Pricing Card Medium Screen Styles (MD) */
+#{{ component_id }} {
+    padding: 3rem;
+    max-width: 420px;
+    gap: 2.5rem;
+    border-radius: 16px;
+}
+
+#{{ component_id }} .plan-name {
+    font-size: 2rem;
+}
+
+#{{ component_id }} .amount {
+    font-size: 4rem;
+}
+
+#{{ component_id }} .currency {
+    font-size: 2rem;
+}
+
+#{{ component_id }} .features-list {
+    gap: 1rem;
+}
+
+#{{ component_id }} .feature-item {
+    font-size: 1.05rem;
+}
+
+#{{ component_id }} .feature-item::before {
+    width: 24px;
+    height: 24px;
+    font-size: 0.9rem;
+}
+
+#{{ component_id }} .pricing-button {
+    padding: 1.25rem 2.5rem;
+    font-size: 1.2rem;
+    border-radius: 10px;
+}

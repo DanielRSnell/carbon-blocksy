@@ -1,0 +1,42 @@
+/* Pricing Card Small Screen Styles (SM) */
+#{{ component_id }} {
+    padding: 2.5rem;
+    max-width: 380px;
+    gap: 2rem;
+}
+
+#{{ component_id }} .plan-name {
+    font-size: 1.75rem;
+}
+
+#{{ component_id }} .plan-subtitle {
+    font-size: 1.1rem;
+}
+
+#{{ component_id }} .amount {
+    font-size: 3.5rem;
+}
+
+#{{ component_id }} .currency {
+    font-size: 1.75rem;
+}
+
+#{{ component_id }} .period {
+    font-size: 1.1rem;
+}
+
+#{{ component_id }} .feature-item {
+    font-size: 1rem;
+    gap: 1rem;
+}
+
+#{{ component_id }} .feature-item::before {
+    width: 22px;
+    height: 22px;
+    font-size: 0.85rem;
+}
+
+#{{ component_id }} .pricing-button {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+}

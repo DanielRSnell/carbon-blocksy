@@ -1,0 +1,29 @@
+/* Hero-2 Mobile Overrides (XS) */
+#{{ component_id }} {
+    padding: 3rem 1rem;
+    min-height: 70vh;
+}
+
+#{{ component_id }} .hero-content {
+    gap: 2rem;
+}
+
+#{{ component_id }} .hero-title {
+    font-size: 2rem;
+    margin: 0 0 1rem 0;
+}
+
+#{{ component_id }} .hero-subtitle {
+    font-size: 1.1rem;
+    margin: 0 0 2rem 0;
+}
+
+#{{ component_id }} .hero-actions {
+    gap: 1rem;
+}
+
+#{{ component_id }} .hero-image img {
+    max-width: 500px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
