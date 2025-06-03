@@ -1,0 +1,81 @@
+{# Pricing Table Block Template #}
+
+<section class="carbon-block--pricing-table theme-{{ theme|default('light') }}{{ background_pattern ? ' with-grid-bg' : '' }}">
+    {% if title or subtitle %}
+    <div class="pricing-header">
+        {% if title %}
+        <h2 class="section-title">{{ title }}</h2>
+        {% endif %}
+        
+        {% if subtitle %}
+        <p class="section-subtitle">{{ subtitle }}</p>
+        {% endif %}
+    </div>
+    {% endif %}
+    
+    {% if plans %}
+    <div class="pricing-grid" data-columns="{{ columns }}">
+        {% for plan in plans %}
+        <div class="pricing-plan{{ plan.featured and highlight_featured ? ' featured' : '' }}">
+            {% if plan.featured and highlight_featured %}
+            <div class="featured-badge">{{ plan.featured_badge|default('Popular') }}</div>
+            {% endif %}
+            
+            <div class="plan-header">
+                <h3 class="plan-name">{{ plan.name }}</h3>
+                {% if plan.description %}
+                <p class="plan-description">{{ plan.description }}</p>
+                {% endif %}
+            </div>
+            
+            <div class="plan-pricing">
+                <div class="price">{{ plan.price }}</div>
+                {% if plan.billing_period %}
+                <div class="billing-period">{{ plan.billing_period }}</div>
+                {% endif %}
+            </div>
+            
+            {% if plan.features %}
+            <div class="plan-features">
+                <ul class="features-list">
+                    {% for feature in plan.features %}
+                    <li class="feature-item{{ feature.included ? ' included' : ' not-included' }}">
+                        <span class="feature-icon">
+                            {% if feature.icon %}
+                                {{ feature.icon }}
+                            {% elseif feature.included %}
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                            </svg>
+                            {% else %}
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                            </svg>
+                            {% endif %}
+                        </span>
+                        <span class="feature-text">{{ feature.feature }}</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+            
+            <div class="plan-cta">
+                <a href="{{ plan.cta_url }}" class="cta-button cta-{{ plan.cta_style|default('primary') }}{{ plan.featured and highlight_featured ? ' featured' : '' }}">
+                    {{ plan.cta_text }}
+                    {% if plan.cta_style|default('primary') == 'primary' %}
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="cta-arrow">
+                        <path d="M3.33334 8H12.6667M12.6667 8L8.00001 3.33333M12.6667 8L8.00001 12.6667" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    {% endif %}
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="no-plans">
+        <p>No pricing plans configured yet.</p>
+    </div>
+    {% endif %}
+</section>

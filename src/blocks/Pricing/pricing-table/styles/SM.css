@@ -1,0 +1,38 @@
+/* Small tablets (≥ 576px) - Pricing Table */
+.carbon-block--pricing-table .pricing-grid {
+    max-width: 800px;
+    padding: 0 var(--theme-content-spacing);
+}
+
+.carbon-block--pricing-table .pricing-grid[data-columns="2"] {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.carbon-block--pricing-table .pricing-grid[data-columns="auto"] {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.carbon-block--pricing-table .section-title {
+    font-size: 2.25rem;
+}
+
+.carbon-block--pricing-table .plan-name {
+    font-size: 1.375rem;
+}
+
+.carbon-block--pricing-table .price {
+    font-size: 2.25rem;
+}
+
+.carbon-block--pricing-table .plan-description {
+    font-size: 0.9375rem;
+}
+
+.carbon-block--pricing-table .feature-item {
+    font-size: 0.875rem;
+}
+
+.carbon-block--pricing-table .cta-button {
+    padding: calc(var(--theme-content-spacing) * 0.75) calc(var(--theme-content-spacing) * 1.125);
+    font-size: 0.9375rem;
+}

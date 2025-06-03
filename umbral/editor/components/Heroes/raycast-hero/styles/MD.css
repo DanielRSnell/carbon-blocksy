@@ -1,0 +1,27 @@
+/* Raycast Hero - Tablets (≥ 768px) */
+
+.umbral-raycast-hero .hero-container {
+    padding: 0 var(--hero-spacing-lg);
+}
+
+.umbral-raycast-hero .command-palette {
+    max-width: 600px;
+    padding: var(--hero-spacing-xl);
+}
+
+.umbral-raycast-hero .hero-title {
+    font-size: 3.5rem;
+}
+
+.umbral-raycast-hero .hero-subtitle {
+    font-size: 1.25rem;
+}
+
+.umbral-raycast-hero .floating-element {
+    width: 28px;
+    height: 28px;
+}
+
+.umbral-raycast-hero .shortcut-item {
+    min-width: 160px;
+}

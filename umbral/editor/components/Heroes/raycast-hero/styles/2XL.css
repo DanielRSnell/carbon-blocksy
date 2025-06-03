@@ -1,0 +1,41 @@
+/* Raycast Hero - Extra large desktop (≥ 1400px) */
+
+.umbral-raycast-hero .hero-container {
+    gap: calc(var(--hero-spacing) * 6);
+    padding: 0 calc(var(--hero-spacing) * 4);
+}
+
+.umbral-raycast-hero .hero-title {
+    font-size: 5rem;
+    margin-bottom: var(--hero-spacing-2xl);
+}
+
+.umbral-raycast-hero .hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: calc(var(--hero-spacing) * 4);
+}
+
+.umbral-raycast-hero .command-palette {
+    max-width: 750px;
+}
+
+.umbral-raycast-hero .floating-element {
+    width: 40px;
+    height: 40px;
+}
+
+.umbral-raycast-hero .feature-cards-left .feature-card,
+.umbral-raycast-hero .feature-cards-right .feature-card {
+    max-width: 360px;
+    padding: var(--hero-spacing-2xl);
+}
+
+/* Enhanced spacing for ultra-wide screens */
+.umbral-raycast-hero .hero-cta {
+    margin-bottom: var(--hero-spacing-2xl);
+}
+
+.umbral-raycast-hero .cta-button {
+    padding: var(--hero-spacing-lg) var(--hero-spacing-2xl);
+    font-size: 1.125rem;
+}

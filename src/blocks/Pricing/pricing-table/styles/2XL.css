@@ -1,0 +1,65 @@
+/* Extra large (≥ 1400px) - Pricing Table */
+.carbon-block--pricing-table {
+    padding: calc(var(--theme-content-vertical-spacing) * 2) 0;
+}
+
+.carbon-block--pricing-table .pricing-header {
+    margin-bottom: calc(var(--theme-content-spacing) * 4);
+}
+
+.carbon-block--pricing-table .pricing-grid {
+    max-width: 1600px;
+    gap: calc(var(--theme-content-spacing) * 2.5);
+}
+
+.carbon-block--pricing-table .pricing-plan {
+    padding: calc(var(--theme-content-spacing) * 2);
+}
+
+.carbon-block--pricing-table .section-title {
+    font-size: 3.5rem;
+}
+
+.carbon-block--pricing-table .section-subtitle {
+    font-size: 1.25rem;
+}
+
+.carbon-block--pricing-table .plan-header {
+    margin-bottom: calc(var(--theme-content-spacing) * 2);
+}
+
+.carbon-block--pricing-table .plan-name {
+    font-size: 1.75rem;
+}
+
+.carbon-block--pricing-table .plan-description {
+    font-size: 1.05rem;
+}
+
+.carbon-block--pricing-table .plan-pricing {
+    margin-bottom: calc(var(--theme-content-spacing) * 2);
+}
+
+.carbon-block--pricing-table .price {
+    font-size: 3rem;
+}
+
+.carbon-block--pricing-table .plan-features {
+    margin-bottom: calc(var(--theme-content-spacing) * 2);
+}
+
+.carbon-block--pricing-table .feature-item {
+    padding: calc(var(--theme-content-spacing) * 0.5) 0;
+    font-size: 1rem;
+}
+
+.carbon-block--pricing-table .feature-icon {
+    width: 22px;
+    height: 22px;
+    font-size: 1rem;
+}
+
+.carbon-block--pricing-table .cta-button {
+    padding: var(--theme-content-spacing) calc(var(--theme-content-spacing) * 1.5);
+    font-size: 1.05rem;
+}

@@ -1,0 +1,73 @@
+/* Mobile styles (< 576px) - Pricing Table */
+.carbon-block--pricing-table {
+    padding: calc(var(--theme-content-vertical-spacing) * 0.75) 0;
+}
+
+.carbon-block--pricing-table .pricing-header {
+    margin-bottom: calc(var(--theme-content-spacing) * 2);
+}
+
+.carbon-block--pricing-table .section-title {
+    font-size: 2rem;
+}
+
+.carbon-block--pricing-table .section-subtitle {
+    font-size: 1rem;
+}
+
+.carbon-block--pricing-table .pricing-grid {
+    grid-template-columns: 1fr;
+    gap: var(--theme-content-spacing);
+    padding: 0 calc(var(--theme-content-spacing) * 0.5);
+}
+
+.carbon-block--pricing-table .pricing-plan {
+    padding: var(--theme-content-spacing);
+}
+
+.carbon-block--pricing-table .pricing-plan.featured {
+    transform: none;
+    margin: calc(var(--theme-content-spacing) * 0.5) 0;
+}
+
+.carbon-block--pricing-table .pricing-plan.featured:hover {
+    transform: translateY(-2px);
+}
+
+.carbon-block--pricing-table .plan-name {
+    font-size: 1.25rem;
+}
+
+.carbon-block--pricing-table .plan-description {
+    font-size: 0.875rem;
+}
+
+.carbon-block--pricing-table .price {
+    font-size: 2rem;
+}
+
+.carbon-block--pricing-table .billing-period {
+    font-size: 0.8125rem;
+}
+
+.carbon-block--pricing-table .feature-item {
+    padding: calc(var(--theme-content-spacing) * 0.25) 0;
+    font-size: 0.875rem;
+}
+
+.carbon-block--pricing-table .feature-icon {
+    width: 18px;
+    height: 18px;
+    font-size: 0.8125rem;
+    margin-right: calc(var(--theme-content-spacing) * 0.5);
+}
+
+.carbon-block--pricing-table .cta-button {
+    padding: calc(var(--theme-content-spacing) * 0.625) var(--theme-content-spacing);
+    font-size: 0.875rem;
+}
+
+.carbon-block--pricing-table .featured-badge {
+    font-size: 0.8125rem;
+    padding: 4px 12px;
+}

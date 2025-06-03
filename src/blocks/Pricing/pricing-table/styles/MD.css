@@ -1,0 +1,35 @@
+/* Tablets (≥ 768px) - Pricing Table */
+.carbon-block--pricing-table .pricing-grid {
+    gap: calc(var(--theme-content-spacing) * 1.25);
+    max-width: 1000px;
+}
+
+.carbon-block--pricing-table .pricing-grid[data-columns="3"],
+.carbon-block--pricing-table .pricing-grid[data-columns="auto"] {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.carbon-block--pricing-table .section-title {
+    font-size: 2.5rem;
+}
+
+.carbon-block--pricing-table .plan-name {
+    font-size: 1.5rem;
+}
+
+.carbon-block--pricing-table .price {
+    font-size: 2.5rem;
+}
+
+.carbon-block--pricing-table .plan-description {
+    font-size: 0.9375rem;
+}
+
+.carbon-block--pricing-table .feature-item {
+    font-size: 0.9375rem;
+}
+
+.carbon-block--pricing-table .cta-button {
+    padding: calc(var(--theme-content-spacing) * 0.75) calc(var(--theme-content-spacing) * 1.25);
+    font-size: 0.9375rem;
+}

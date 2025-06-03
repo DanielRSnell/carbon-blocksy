@@ -11,6 +11,13 @@ composer install
 # No build process needed - CSS/JS compiled dynamically
 ```
 
+## Architecture Overview
+
+This repository contains **two component systems**:
+
+1. **Carbon Blocks Framework** (`src/blocks/`) - Main Gutenberg blocks system
+2. **Umbral Editor Components** (`umbral/editor/components/`) - Alternative component system
+
 ## Carbon Blocks Framework Architecture
 
 This is a **zero-configuration WordPress development framework** that combines Carbon Fields, Timber (Twig), and Gutenberg with file-based auto-discovery.
@@ -111,3 +118,83 @@ Critical initialization order in `src/config/setup.php`:
 BEM methodology: `carbon-block--{block-name}__element`
 
 All components are auto-discovered and registered. The framework handles compilation, routing, and template rendering automatically.
+
+## Umbral Editor Components Architecture
+
+The **Umbral Editor Components** (`umbral/editor/components/`) system provides an alternative component architecture with different patterns:
+
+### Component Structure
+```
+umbral/editor/components/
+├── _categories.php          # Central category registration
+└── {Category}/              # Category directory (Content, Heroes, etc.)
+    └── {component-name}/    # Component directory
+        ├── fields.php       # Component field definitions with panels/tabs
+        ├── render.php       # Component renderer with query logic
+        ├── view.twig        # Timber template
+        ├── example.js       # Example/demo JavaScript
+        └── styles/          # Responsive CSS files
+            ├── XS.css
+            ├── SM.css
+            ├── MD.css
+            ├── LG.css
+            ├── XL.css
+            └── 2XL.css
+```
+
+### Key Differences from Carbon Blocks
+
+**Registration Pattern**:
+- Uses centralized `_categories.php` for category registration
+- Components registered via `umbral_register_component()` function
+- Categories registered via `umbral_register_component_category()` function
+
+**Field Configuration**:
+- Advanced UI configuration with panels and tabs
+- Built-in panel system (`content`, `query`, `display`)
+- Rich field types with descriptions and defaults
+
+**Rendering System**:
+- Separate `render.php` files handle business logic
+- Query building and data processing in render files
+- Uses `compile_component_styles()` and `compile_component_scripts()` helpers
+- Merges component context with main Timber context
+
+### Umbral Component Development
+
+**Adding a New Component**:
+1. Create directory structure in `umbral/editor/components/{Category}/{component-name}/`
+2. Define fields in `fields.php` using `umbral_register_component()`
+3. Implement rendering logic in `render.php`
+4. Create Timber template in `view.twig`
+5. Add responsive styles in `styles/` directory
+
+**Component Registration Example**:
+```php
+// In fields.php
+umbral_register_component('Content', 'blog-posts', [
+    'label' => 'Blog Posts',
+    'description' => 'Display dynamic blog posts with advanced controls',
+    'fields' => [
+        '_ui_config' => ['style' => 'tabs'],
+        '_panels' => [
+            'content' => ['label' => 'Content', 'icon' => '📝'],
+            'query' => ['label' => 'Query', 'icon' => '🔍'],
+            'display' => ['label' => 'Display', 'icon' => '🎨']
+        ],
+        // Field definitions...
+    ]
+]);
+```
+
+### Development Guidelines
+
+**When to Use Each System**:
+- **Carbon Blocks**: Standard Gutenberg blocks, simple components, WordPress-native integration
+- **Umbral Components**: Complex components with advanced UI, query-heavy components, custom workflows
+
+**Shared Concepts**:
+- Both systems use responsive CSS compilation
+- Both use Timber/Twig for templating
+- Both follow file-based auto-discovery patterns
+- Both support component isolation and reusability
