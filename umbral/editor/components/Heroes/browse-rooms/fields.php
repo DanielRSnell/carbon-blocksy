@@ -11,7 +11,9 @@ umbral_register_component('Heroes', 'browse-rooms', [
     'description' => 'Showcase furniture organized by room categories with beautiful imagery',
     'icon' => '🏠',
     'fields' => [
-        '_ui_config' => ['style' => 'sections'],
+        '_ui_config' => [
+            'style' => 'sections'
+        ],
         '_panels' => [
             'content' => [
                 'label' => 'Content & Layout',
@@ -35,7 +37,7 @@ umbral_register_component('Heroes', 'browse-rooms', [
                 'label' => 'Room Categories',
                 'icon' => '🏠',
                 'description' => 'Configure individual room categories',
-                'style' => 'accordion',
+                'style' => 'tabs',
                 'sub_panels' => [
                     'featured_room' => [
                         'label' => 'Featured Room (Large)',
@@ -161,7 +163,7 @@ umbral_register_component('Heroes', 'browse-rooms', [
             'repeatable' => true,
             'panel' => 'rooms',
             'sub_panel' => 'room_grid',
-            'options' => [
+            'group_options' => [
                 'group_title' => 'Room {#}',
                 'add_button' => 'Add Room',
                 'remove_button' => 'Remove Room',

@@ -219,6 +219,38 @@ This comprehensive guide establishes standards and best practices for designing 
 ]
 ```
 
+### Critical UI Configuration Rules
+
+**⚠️ REQUIRED**: Always include proper `_ui_config` structure
+```php
+'_ui_config' => [
+    'style' => 'sections'    // ✅ REQUIRED for all components
+],
+```
+
+**Panel Style Consistency Rules:**
+- **`'style' => 'tabs'`** - For sub_panels that are equally important
+- **`'style' => 'accordion'`** - For sub_panels where one is primary  
+- **No style specified** - For simple panels without sub_panels
+
+**❌ COMMON MISTAKES:**
+```php
+// Wrong: Missing _ui_config
+'_panels' => [...] // Will cause rendering issues
+
+// Wrong: Inconsistent panel styles
+'rooms' => [
+    'style' => 'accordion',    // ❌ Don't mix styles randomly
+    'sub_panels' => [...]
+]
+
+// Correct: Consistent panel organization
+'rooms' => [
+    'style' => 'tabs',         // ✅ Use 'tabs' for equal importance
+    'sub_panels' => [...]
+]
+```
+
 ### Sub-Panel Organization
 
 **Within Content Panels:**
@@ -283,7 +315,48 @@ This comprehensive guide establishes standards and best practices for designing 
 ```php
 'number' => 'Numeric input with validation',
 'date' => 'Date picker',
-'wysiwyg' => 'Rich text editor'
+'wysiwyg' => 'Rich text editor',
+'group' => 'Repeatable group of fields'
+```
+
+### Group Field Structure (CRITICAL SYNTAX)
+
+**⚠️ IMPORTANT**: Group fields use `group_options` NOT `options`
+
+```php
+'repeatable_items' => [
+    'type' => 'group',
+    'title' => 'Repeatable Items',
+    'description' => 'Add multiple items',
+    'repeatable' => true,
+    'panel' => 'content',
+    'sub_panel' => 'items',
+    'group_options' => [    // ✅ CORRECT: Use 'group_options'
+        'group_title' => 'Item {#}',
+        'add_button' => 'Add Item',
+        'remove_button' => 'Remove Item',
+        'closed' => true,
+        'sortable' => true,
+        'limit' => 10
+    ],
+    'fields' => [
+        'item_name' => [
+            'type' => 'text',
+            'title' => 'Item Name'
+        ],
+        'item_description' => [
+            'type' => 'textarea',
+            'title' => 'Item Description'
+        ]
+    ]
+]
+```
+
+**❌ COMMON MISTAKE**: Using `options` instead of `group_options`
+```php
+// THIS WILL BREAK THE COMPONENT:
+'group_options' => [...] // ✅ Correct
+'options' => [...]       // ❌ Wrong - will prevent fields from rendering
 ```
 
 ### Contextual Field Naming
@@ -451,6 +524,24 @@ umbral_register_component('Products', 'product-showcase', [
 ## Troubleshooting Guide
 
 ### Common Issues and Solutions
+
+**Issue: Fields not rendering in editor**
+- **Symptom**: Component loads but specific fields/panels are missing
+- **Common Causes**:
+  - Using `'options'` instead of `'group_options'` for group fields
+  - Missing `_ui_config` structure
+  - Inconsistent panel style declarations
+- **Solution**: Check field syntax and UI configuration structure
+
+**Issue: Group fields broken**
+- **Symptom**: Repeatable group fields don't appear or function
+- **Cause**: Using `'options'` instead of `'group_options'`
+- **Solution**: Change to `'group_options'` for all group field configurations
+
+**Issue: Panel organization not working**  
+- **Symptom**: Sub-panels not displaying correctly
+- **Cause**: Missing or incorrect panel style declarations
+- **Solution**: Ensure consistent use of `'style' => 'tabs'` or `'style' => 'accordion'`
 
 **Issue: Too many fields in one panel**
 - **Solution**: Break into sub_panels with logical groupings

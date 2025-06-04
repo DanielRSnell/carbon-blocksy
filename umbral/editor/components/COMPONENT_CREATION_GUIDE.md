@@ -12,6 +12,51 @@ The Umbral Editor follows a content-first approach:
 - **CMB2 Integration**: All fields use CMB2 field types for consistency
 - **Blocksy Design System**: Components should use the [Blocksy Style System](./BLOCKSY_STYLE_SYSTEM.md) for consistent styling
 
+## ⚠️ CRITICAL: Common Mistakes to Avoid
+
+Before starting, be aware of these **field rendering issues** that will break your component:
+
+### Group Field Syntax Error (MOST COMMON)
+```php
+// ❌ WRONG - Component fields won't render:
+'group_options' => [...] // ✅ Correct
+'options' => [...]       // ❌ Wrong - breaks field rendering
+
+// ✅ CORRECT Group Field Structure:
+'repeatable_items' => [
+    'type' => 'group',
+    'group_options' => [    // ← MUST be 'group_options'
+        'group_title' => 'Item {#}',
+        'add_button' => 'Add Item'
+    ],
+    'fields' => [...]
+]
+```
+
+### UI Configuration Requirements
+```php
+// ✅ REQUIRED - Every component MUST have:
+'_ui_config' => [
+    'style' => 'sections'    // Required for proper rendering
+],
+'_panels' => [...]           // Panel structure
+```
+
+### Panel Style Consistency
+```php
+// ✅ CORRECT - Use 'tabs' for equal importance sub-panels:
+'rooms' => [
+    'style' => 'tabs',       // For equal importance
+    'sub_panels' => [...]
+]
+
+// ❌ AVOID - Mixing styles inconsistently:
+'rooms' => [
+    'style' => 'accordion',  // Don't use randomly
+    'sub_panels' => [...]
+]
+```
+
 ## Related Documentation
 
 - **[Field Design Guide](./field_design.md)** - **REQUIRED READING** - Official standards for component field design and organization
@@ -153,7 +198,7 @@ umbral_register_component('Features', 'feature-grid', [
             'label' => 'Features',
             'description' => 'Add individual features',
             'repeatable' => true,
-            'options' => [
+            'group_options' => [    // ✅ CRITICAL: Use 'group_options' NOT 'options'
                 'group_title' => 'Feature {#}',
                 'add_button' => 'Add Feature',
                 'remove_button' => 'Remove Feature',
