@@ -1,0 +1,82 @@
+{# Furniture Hero Component Template #}
+
+{# Component Styles #}
+<style id="{{ component_id }}-styles">
+{# Compiled responsive styles will be injected here #}
+{{ compiled_styles|raw }}
+</style>
+
+{# Component Scripts #}
+{% if compiled_scripts %}
+<script id="{{ component_id }}-scripts">
+{{ compiled_scripts|raw }}
+</script>
+{% endif %}
+
+{# Furniture Hero Component HTML #}
+<section id="{{ component_id }}" class="furniture-hero">
+    <div class="furniture-hero__container">
+        <div class="furniture-hero__content">
+            <div class="furniture-hero__text-section">
+                <h2 class="furniture-hero__title">{{ title }}</h2>
+                
+                <p class="furniture-hero__subtitle">{{ subtitle }}</p>
+                
+                <div class="furniture-hero__experts">
+                    <div class="furniture-hero__avatars">
+                        {% for avatar in expert_avatars %}
+                        <div class="furniture-hero__avatar">
+                            {% if avatar.image_id %}
+                                {% set image = get_image(avatar.image_id) %}
+                                {% if image %}
+                                <img src="{{ image.src }}" alt="{{ image.alt ?: avatar.alt_text }}" width="30" height="48" loading="lazy">
+                                {% endif %}
+                            {% elseif avatar.fallback_url %}
+                                <img src="{{ avatar.fallback_url }}" alt="{{ avatar.alt_text }}" width="30" height="48" loading="lazy">
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <span class="furniture-hero__expert-text">{{ expert_text }}</span>
+                </div>
+                
+                <div class="furniture-hero__cta">
+                    <a href="{{ cta_url }}" class="furniture-hero__button furniture-hero__button--{{ cta_style }}">{{ cta_text }}</a>
+                </div>
+            </div>
+            
+            <div class="furniture-hero__showcase">
+                <div class="furniture-hero__cards furniture-hero__cards--{{ product_card_style }} furniture-hero__cards--{{ product_hover_effect }}">
+                    {% for card in product_cards %}
+                    {% if card.image_id %}
+                        {% set product_image = get_image(card.image_id) %}
+                    {% endif %}
+                    <div class="furniture-hero__product-card product-card-{{ loop.index }}"{% if product_image %} style="background-image: url('{{ product_image.src }}')"{% endif %}>
+                        <div class="furniture-hero__product-info">
+                            <h6 class="furniture-hero__product-name">{{ card.name }}</h6>
+                            <div class="furniture-hero__product-price">{{ card.price }}</div>
+                            {% if show_product_descriptions and card.description %}
+                            <p class="furniture-hero__product-description">{{ card.description }}</p>
+                            {% endif %}
+                        </div>
+                        <a href="{{ card.url }}" class="furniture-hero__product-link" aria-label="View {{ card.name }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 13.549" class="furniture-hero__arrow-icon">
+                                <path d="M19.755 7.402c-.015.018-.02.04-.037.057l-5.806 5.806a.965.965 0 0 1-1.369 0 .967.967 0 0 1 0-1.368l4.155-4.155H.968a.968.968 0 1 1 0-1.935h15.73l-4.155-4.155A.967.967 0 1 1 13.912.284l5.806 5.806c.02.02.028.047.046.069a.957.957 0 0 1 .162.244c.099.237.099.505 0 .743a.96.96 0 0 1-.17.256Z"/>
+                            </svg>
+                        </a>
+                    </div>
+                    {% endfor %}
+                    
+                    <div class="furniture-hero__promo-card furniture-hero__promo-card--{{ promo_style }} furniture-hero__promo-card--{{ promo_animation }}">
+                        {% if promotion_card.badge_text %}
+                        <div class="furniture-hero__promo-badge">{{ promotion_card.badge_text }}</div>
+                        {% endif %}
+                        <h5 class="furniture-hero__promo-title" style="color: {{ promotion_card.title_color }}">{{ promotion_card.title }}</h5>
+                        <p class="furniture-hero__promo-description">{{ promotion_card.description }}</p>
+                        <a href="{{ promotion_card.button_url }}" class="furniture-hero__promo-button">{{ promotion_card.button_text }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

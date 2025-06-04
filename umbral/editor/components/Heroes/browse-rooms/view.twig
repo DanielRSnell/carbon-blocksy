@@ -1,0 +1,70 @@
+{# Browse by Rooms Component Template #}
+
+{# Component Styles #}
+<style id="{{ component_id }}-styles">
+{# Compiled responsive styles will be injected here #}
+{{ compiled_styles|raw }}
+</style>
+
+{# Component Scripts #}
+{% if compiled_scripts %}
+<script id="{{ component_id }}-scripts">
+{{ compiled_scripts|raw }}
+</script>
+{% endif %}
+
+{# Browse by Rooms Component HTML #}
+<section id="{{ component_id }}" class="browse-rooms browse-rooms--{{ layout_style }} browse-rooms--{{ card_style }} browse-rooms--{{ hover_effect }}">
+    <div class="browse-rooms__container">
+        {# Section Header #}
+        <div class="browse-rooms__header">
+            <h2 class="browse-rooms__title" style="color: {{ title_color }}">{{ section_title }}</h2>
+            <p class="browse-rooms__description" style="color: {{ description_color }}">{{ section_description }}</p>
+        </div>
+        
+        {# Room Cards Layout #}
+        <div class="browse-rooms__content">
+            {# Featured Room (Large Card) #}
+            <div class="browse-rooms__featured">
+                {% if featured_room.image_id %}
+                    {% set featured_image = get_image(featured_room.image_id) %}
+                {% endif %}
+                
+                <a href="{{ featured_room.url }}" class="browse-rooms__card browse-rooms__card--featured"{% if featured_image %} style="background-image: url('{{ featured_image.src }}')"{% endif %}>
+                    <div class="browse-rooms__card-overlay"></div>
+                    <div class="browse-rooms__card-content">
+                        <h3 class="browse-rooms__room-name">{{ featured_room.name }}</h3>
+                        <span class="browse-rooms__product-count">{{ featured_room.product_count }} products</span>
+                    </div>
+                    {% if not featured_image %}
+                    <div class="browse-rooms__placeholder">
+                        <span class="browse-rooms__placeholder-text">{{ featured_room.name }}</span>
+                    </div>
+                    {% endif %}
+                </a>
+            </div>
+            
+            {# Room Grid (Small Cards) #}
+            <div class="browse-rooms__grid">
+                {% for room in room_grid %}
+                {% if room.image_id %}
+                    {% set room_image = get_image(room.image_id) %}
+                {% endif %}
+                
+                <a href="{{ room.url }}" class="browse-rooms__card browse-rooms__card--grid"{% if room_image %} style="background-image: url('{{ room_image.src }}')"{% endif %}>
+                    <div class="browse-rooms__card-overlay"></div>
+                    <div class="browse-rooms__card-content">
+                        <h4 class="browse-rooms__room-name">{{ room.name }}</h4>
+                        <span class="browse-rooms__product-count">{{ room.product_count }} products</span>
+                    </div>
+                    {% if not room_image %}
+                    <div class="browse-rooms__placeholder">
+                        <span class="browse-rooms__placeholder-text">{{ room.name }}</span>
+                    </div>
+                    {% endif %}
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>

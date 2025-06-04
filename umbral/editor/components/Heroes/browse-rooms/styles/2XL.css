@@ -1,0 +1,30 @@
+/* Extra large (≥ 1400px) - Maximum fidelity */
+#{{ component_id }} {
+    /* Maximum layout variables */
+    --section-padding: 120px;
+    --container-max-width: 1400px;
+    --container-padding: 40px;
+    --content-gap: 100px;
+    --grid-gap: 28px;
+    
+    /* Maximum header variables */
+    --header-max-width: 800px;
+    --title-font-size: 4rem;
+    --title-letter-spacing: -0.03em;
+    --title-margin-bottom: 24px;
+    --description-font-size: 1.375rem;
+    
+    /* Maximum card variables */
+    --featured-card-height: 650px;
+    --grid-card-height: 300px;
+    --card-border-radius: 32px;
+    --card-padding: 40px;
+    
+    /* Maximum typography */
+    --room-name-size: 2rem;
+    --product-count-size: 1.125rem;
+    
+    /* Maximum effects */
+    --hover-transform: translateY(-16px);
+    --card-hover-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+}

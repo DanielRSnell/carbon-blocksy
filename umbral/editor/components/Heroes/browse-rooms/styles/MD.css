@@ -1,0 +1,28 @@
+/* Tablets (≥ 768px) - Enhanced grid layout */
+#{{ component_id }} {
+    /* Tablet layout variables */
+    --container-max-width: 1000px;
+    --content-gap: 56px;
+    --grid-gap: 20px;
+    
+    /* Tablet header variables */
+    --header-max-width: 700px;
+    --title-font-size: 2.75rem;
+    --title-margin-bottom: 16px;
+    
+    /* Tablet card variables */
+    --featured-card-height: 450px;
+    --grid-card-height: 240px;
+    --card-padding: 30px;
+    
+    /* Tablet typography */
+    --room-name-size: 1.5rem;
+    
+    /* Tablet grid layout - closer to desktop */
+    --featured-grid-template: 1fr 1.1fr;
+}
+
+/* Layout refinements for centered variant */
+.browse-rooms--centered .browse-rooms__grid {
+    grid-template-columns: repeat(3, 1fr);
+}

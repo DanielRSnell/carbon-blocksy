@@ -1,0 +1,380 @@
+/* Component-scoped variables using Blocksy colors */
+#{{ component_id }} {
+    /* Layout variables */
+    --hero-padding: 80px;
+    --container-max-width: 1200px;
+    --container-padding: 24px;
+    --content-gap: 60px;
+    --content-grid-columns: 1fr 1.2fr;
+    --content-min-height: 500px;
+    
+    /* Text section variables */
+    --text-gap: 24px;
+    --title-font-size: 3.5rem;
+    --title-line-height: 1.1;
+    --title-letter-spacing: -0.02em;
+    --title-margin-bottom: 16px;
+    --subtitle-font-size: 1.25rem;
+    --subtitle-line-height: 1.6;
+    --subtitle-max-width: 480px;
+    --subtitle-margin-bottom: 32px;
+    --experts-gap: 16px;
+    --experts-margin-bottom: 32px;
+    --avatar-size: 40px;
+    --avatar-gap: 8px;
+    --expert-text-size: 0.875rem;
+    --button-padding: 16px 32px;
+    --button-font-size: 1rem;
+    --button-min-height: 48px;
+    --button-border-radius: 50px;
+    
+    /* Cards variables */
+    --cards-grid-columns: 1.4fr 1fr;
+    --cards-grid-rows: 1fr 1fr;
+    --cards-height: 520px;
+    --cards-gap: 16px;
+    --card-border-radius: 24px;
+    --card-padding: 24px;
+    --card-info-padding: 16px;
+    --card-info-border-radius: 12px;
+    --product-name-size: 1.125rem;
+    --product-name-margin: 0 0 4px 0;
+    --product-price-size: 1rem;
+    --product-link-size: 48px;
+    --product-link-margin-top: 16px;
+    --arrow-icon-size: 18px;
+    
+    /* Promo card variables */
+    --promo-padding: 32px 24px;
+    --promo-gap: 16px;
+    --promo-title-size: 2rem;
+    --promo-title-line-height: 1.1;
+    --promo-desc-size: 0.9rem;
+    --promo-desc-line-height: 1.4;
+    --promo-button-padding: 12px 24px;
+    --promo-button-size: 0.875rem;
+    --promo-button-margin-top: 8px;
+    
+    /* Color variables using Blocksy palette */
+    --hero-bg: #f0f1f2;
+    --text-primary: var(--theme-headings-color);
+    --text-secondary: var(--theme-text-color);
+    --card-bg: var(--theme-palette-color-8);
+    --card-overlay: rgba(255, 255, 255, 0.9);
+    --promo-bg: #3A4F66;
+    --promo-text: var(--theme-palette-color-8);
+    
+    /* Interactive elements */
+    --button-bg: var(--theme-button-background-initial-color);
+    --button-hover-bg: var(--theme-button-background-hover-color);
+    --button-text: var(--theme-button-text-initial-color);
+    
+    /* Shadows and transitions */
+    --card-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+    --card-hover-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Desktop layout - using CSS variables */
+.furniture-hero {
+    background: var(--hero-bg);
+    padding: var(--hero-padding) 0;
+    min-height: 600px;
+}
+
+.furniture-hero__container {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+}
+
+.furniture-hero__content {
+    display: grid;
+    grid-template-columns: var(--content-grid-columns);
+    gap: var(--content-gap);
+    align-items: center;
+    min-height: var(--content-min-height);
+}
+
+/* Text section styling - using CSS variables */
+.furniture-hero__text-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--text-gap);
+}
+
+.furniture-hero__title {
+    font-size: var(--title-font-size);
+    font-weight: 700;
+    line-height: var(--title-line-height);
+    color: var(--text-primary);
+    margin: var(--title-margin-bottom);
+    letter-spacing: var(--title-letter-spacing);
+}
+
+.furniture-hero__subtitle {
+    font-size: var(--subtitle-font-size);
+    line-height: var(--subtitle-line-height);
+    color: var(--text-secondary);
+    margin: var(--subtitle-margin-bottom);
+    opacity: 0.8;
+    max-width: var(--subtitle-max-width);
+}
+
+.furniture-hero__experts {
+    display: flex;
+    align-items: center;
+    gap: var(--experts-gap);
+    margin-bottom: var(--experts-margin-bottom);
+}
+
+.furniture-hero__avatars {
+    display: flex;
+    gap: var(--avatar-gap);
+}
+
+.furniture-hero__avatar img {
+    width: var(--avatar-size);
+    height: var(--avatar-size);
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.furniture-hero__expert-text {
+    font-size: var(--expert-text-size);
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.furniture-hero__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--button-padding);
+    background: var(--button-bg);
+    color: var(--button-text);
+    text-decoration: none;
+    border-radius: var(--button-border-radius);
+    font-weight: 600;
+    font-size: var(--button-font-size);
+    min-height: var(--button-min-height);
+    transition: var(--transition);
+    border: none;
+    align-self: flex-start;
+}
+
+.furniture-hero__button:hover {
+    background: var(--button-hover-bg);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(40, 114, 250, 0.3);
+}
+
+/* Button style variants */
+.furniture-hero__button--secondary {
+    background: var(--theme-palette-color-5);
+    color: var(--theme-headings-color);
+}
+
+.furniture-hero__button--secondary:hover {
+    background: var(--theme-palette-color-4);
+    color: var(--theme-palette-color-8);
+}
+
+.furniture-hero__button--outline {
+    background: transparent;
+    color: var(--theme-palette-color-1);
+    border: 2px solid var(--theme-palette-color-1);
+}
+
+.furniture-hero__button--outline:hover {
+    background: var(--theme-palette-color-1);
+    color: var(--theme-palette-color-8);
+}
+
+/* Showcase section - using CSS variables */
+.furniture-hero__showcase {
+    position: relative;
+}
+
+.furniture-hero__cards {
+    display: grid;
+    grid-template-columns: var(--cards-grid-columns);
+    grid-template-rows: var(--cards-grid-rows);
+    gap: var(--cards-gap);
+    height: var(--cards-height);
+    width: 100%;
+}
+
+/* Product cards - using CSS variables */
+.furniture-hero__product-card {
+    position: relative;
+    background: var(--card-bg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: var(--card-padding);
+}
+
+.furniture-hero__product-card.product-card-1 {
+    grid-row: 1 / 3;
+    grid-column: 1;
+    background: linear-gradient(135deg, #6b8e6b 0%, #8db48d 100%);
+}
+
+.furniture-hero__product-card.product-card-2 {
+    grid-row: 1;
+    grid-column: 2;
+    background: linear-gradient(135deg, #b4d4dc 0%, #d9e8ec 100%);
+}
+
+.furniture-hero__product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--card-hover-shadow);
+}
+
+.furniture-hero__product-info {
+    background: var(--card-overlay);
+    backdrop-filter: blur(10px);
+    padding: var(--card-info-padding);
+    border-radius: var(--card-info-border-radius);
+    margin-bottom: auto;
+    display: inline-block;
+    width: fit-content;
+}
+
+.furniture-hero__product-name {
+    font-size: var(--product-name-size);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: var(--product-name-margin);
+    line-height: 1.3;
+}
+
+.furniture-hero__product-price {
+    font-size: var(--product-price-size);
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.furniture-hero__product-link {
+    align-self: flex-end;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--product-link-size);
+    height: var(--product-link-size);
+    background: var(--card-bg);
+    border-radius: 50%;
+    box-shadow: var(--card-shadow);
+    transition: var(--transition);
+    margin-top: var(--product-link-margin-top);
+}
+
+.furniture-hero__product-link:hover {
+    background: var(--button-bg);
+    transform: translateX(4px);
+}
+
+.furniture-hero__arrow-icon {
+    width: var(--arrow-icon-size);
+    height: var(--arrow-icon-size);
+    fill: var(--text-primary);
+    transition: var(--transition);
+}
+
+.furniture-hero__product-link:hover .furniture-hero__arrow-icon {
+    fill: var(--button-text);
+}
+
+/* Promotion card - using CSS variables */
+.furniture-hero__promo-card {
+    background: var(--promo-bg);
+    color: var(--promo-text);
+    padding: var(--promo-padding);
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--card-shadow);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    gap: var(--promo-gap);
+    transition: var(--transition);
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.furniture-hero__promo-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--card-hover-shadow);
+}
+
+.furniture-hero__promo-title {
+    font-size: var(--promo-title-size);
+    font-weight: 700;
+    margin: 0;
+    line-height: var(--promo-title-line-height);
+}
+
+.furniture-hero__promo-description {
+    font-size: var(--promo-desc-size);
+    margin: 0;
+    opacity: 0.9;
+    line-height: var(--promo-desc-line-height);
+}
+
+.furniture-hero__promo-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--promo-button-padding);
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--promo-text);
+    text-decoration: none;
+    border-radius: var(--button-border-radius);
+    font-weight: 600;
+    font-size: var(--promo-button-size);
+    transition: var(--transition);
+    align-self: center;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    margin-top: var(--promo-button-margin-top);
+}
+
+.furniture-hero__promo-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Promotional card style variants */
+.furniture-hero__promo-card--gradient {
+    background: linear-gradient(135deg, var(--theme-palette-color-1), var(--theme-palette-color-2));
+}
+
+.furniture-hero__promo-card--dark {
+    background: var(--theme-palette-color-4);
+}
+
+.furniture-hero__promo-card--accent {
+    background: var(--theme-palette-color-1);
+}
+
+.furniture-hero__promo-card--gradient .furniture-hero__promo-button,
+.furniture-hero__promo-card--dark .furniture-hero__promo-button,
+.furniture-hero__promo-card--accent .furniture-hero__promo-button {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.furniture-hero__promo-card--gradient .furniture-hero__promo-button:hover,
+.furniture-hero__promo-card--dark .furniture-hero__promo-button:hover,
+.furniture-hero__promo-card--accent .furniture-hero__promo-button:hover {
+    background: rgba(255, 255, 255, 0.4);
+}

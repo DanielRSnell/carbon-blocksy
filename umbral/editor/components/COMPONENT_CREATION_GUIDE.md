@@ -14,6 +14,7 @@ The Umbral Editor follows a content-first approach:
 
 ## Related Documentation
 
+- **[Field Design Guide](./field_design.md)** - **REQUIRED READING** - Official standards for component field design and organization
 - **[Blocksy Style System](./BLOCKSY_STYLE_SYSTEM.md)** - Complete styling guide and design tokens
 - **[Example Blocksy CSS](./example_blocksy.css)** - Full implementation of the Blocksy design system
 
@@ -441,6 +442,8 @@ echo "   5. Test with example.js data"
 
 ### fields.php Anatomy
 
+> **⚠️ IMPORTANT**: Before designing component fields, you **MUST** read the **[Field Design Guide](./field_design.md)** for official standards, patterns, and best practices. All field structures should follow the established guidelines.
+
 The `fields.php` file is the foundation of each component. It defines:
 
 #### 1. **Component Registration**
@@ -456,39 +459,34 @@ umbral_register_component('CategoryName', 'component-name', [
 
 #### 2. **Field Organization Patterns**
 
-**Simple Components** (like hero-1):
-- Direct field definitions without panels
-- Suitable for components with <10 fields
+> **📋 FIELD DESIGN REFERENCE**: For complete field organization standards, UI patterns, and decision trees, see the **[Field Design Guide](./field_design.md)**.
 
-**Complex Components** (like blog-posts, testimonials):
-- Use `_ui_config` and `_panels` for organization
-- Support tabs or accordion interfaces
-- Better UX for components with many options
+**Quick Reference - Organization Styles:**
 
-**Panel Configuration Example**:
+**Simple Sections** (5-15 fields):
 ```php
-'_ui_config' => [
-    'style' => 'tabs',              // 'tabs' or 'accordion'
-    'default_open' => ['content']   // Which panels open by default
-],
+'_ui_config' => ['style' => 'sections'],
+'_panels' => [
+    'content' => ['label' => 'Content', 'icon' => '📝'],
+    'styling' => ['label' => 'Styling', 'icon' => '🎨']
+]
+```
+
+**Nested Tabs** (15-30 fields):
+```php
+'_ui_config' => ['style' => 'sections'],
 '_panels' => [
     'content' => [
-        'label' => 'Content',
-        'icon' => '📝',
-        'description' => 'Content and text settings'
-    ],
-    'query' => [
-        'label' => 'Query', 
-        'icon' => '🔍',
-        'description' => 'Data filtering options'
-    ],
-    'display' => [
-        'label' => 'Display',
-        'icon' => '🎨', 
-        'description' => 'Layout and styling'
+        'style' => 'tabs',
+        'sub_panels' => [
+            'hero_content' => ['label' => 'Hero Content', 'icon' => '📋'],
+            'call_to_action' => ['label' => 'Call to Action', 'icon' => '🎯']
+        ]
     ]
 ]
 ```
+
+**📖 For detailed patterns, decision trees, and examples, read the [Field Design Guide](./field_design.md).**
 
 #### 3. **Field Structure Patterns**
 
@@ -650,23 +648,21 @@ echo Timber::compile('@components/CategoryName/component-name/view.twig', $merge
 
 ## Field Types Reference
 
-### CMB2 Field Types Available:
+> **📋 COMPLETE REFERENCE**: For detailed field type documentation, naming conventions, and implementation examples, see the **[Field Design Guide](./field_design.md)**.
+
+### Core Field Types Quick Reference:
 - `text` - Single line text input
 - `textarea` - Multi-line text input
 - `text_url` - URL input with validation
 - `email` - Email input with validation
 - `number` - Number input
 - `select` - Dropdown selection
-- `radio` - Radio button selection
-- `checkbox` - Single checkbox
-- `multicheck` - Multiple checkboxes
+- `checkbox` - Boolean toggle
 - `file` - File upload (images, documents)
 - `colorpicker` - Color picker
-- `date` - Date picker
-- `time` - Time picker
-- `datetime` - Date and time picker
-- `group` - Repeatable group of fields
 - `wysiwyg` - Rich text editor
+
+**📖 For complete field specifications, validation options, and advanced patterns, read the [Field Design Guide](./field_design.md).**
 
 ### Advanced Field Examples:
 
@@ -711,16 +707,21 @@ echo Timber::compile('@components/CategoryName/component-name/view.twig', $merge
 
 ## Best Practices
 
-1. **Content First**: Always start with content fields (title, text, images)
-2. **Optional Design**: Only add design controls when specifically needed
-3. **Blocksy Styling**: Use the [Blocksy Style System](./BLOCKSY_STYLE_SYSTEM.md) for consistent design
-4. **CSS Variables**: Leverage Blocksy design tokens and create component-scoped variables
-5. **Responsive**: Always include all breakpoint CSS files (XS, SM, MD, LG, XL, 2XL)
-6. **Semantic HTML**: Use proper HTML structure in view.twig
-7. **Accessibility**: Include alt text, proper headings, and ARIA labels
-8. **Performance**: Use lazy loading for images, optimize CSS
-9. **Consistent Naming**: Use kebab-case for component names
-10. **Documentation**: Add helpful descriptions to all fields
+### Field Design (REQUIRED)
+> **🎯 ESSENTIAL**: All field design must follow the **[Field Design Guide](./field_design.md)** standards.
+
+1. **Read Field Design Guide**: Follow official patterns for field organization
+2. **Content First**: Always start with content fields (title, text, images)
+3. **Logical Grouping**: Use appropriate UI organization patterns
+4. **Consistent Naming**: Follow established naming conventions
+
+### Development Standards
+5. **Blocksy Styling**: Use the [Blocksy Style System](./BLOCKSY_STYLE_SYSTEM.md) for consistent design
+6. **CSS Variables**: Leverage Blocksy design tokens and create component-scoped variables
+7. **Responsive**: Always include all breakpoint CSS files (XS, SM, MD, LG, XL, 2XL)
+8. **Semantic HTML**: Use proper HTML structure in view.twig
+9. **Accessibility**: Include alt text, proper headings, and ARIA labels
+10. **Performance**: Use lazy loading for images, optimize CSS
 
 ## Styling Components
 
@@ -776,4 +777,4 @@ Components are automatically registered when you use `umbral_register_component(
 
 ---
 
-This guide ensures consistent, maintainable components that follow the Umbral Editor's content-first philosophy while leveraging CMB2's powerful field system.
+This guide ensures consistent, maintainable components that follow the Umbral Editor's content-first philosophy. **All field design must adhere to the standards outlined in the [Field Design Guide](./field_design.md)** for optimal user experience and system consistency.

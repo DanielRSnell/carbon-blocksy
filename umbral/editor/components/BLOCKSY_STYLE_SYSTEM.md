@@ -1,41 +1,54 @@
 # Blocksy Style System for Umbral Components
 
-This document outlines how to use the actual Blocksy theme's CSS variable system when creating components for the Umbral Editor. The system provides a comprehensive set of CSS variables that ensure consistency with the Blocksy WordPress theme and maintainability across your components.
+This comprehensive guide explains how to design and implement components using the Blocksy theme design system with a CSS variable-driven responsive architecture.
 
-## Overview
+## Table of Contents
 
-The Blocksy style system is built around:
-- **Theme CSS Variables**: Comprehensive design tokens that match the actual Blocksy WordPress theme
-- **Component-Scoped Variables**: Custom variables that extend the base system for specific component needs
-- **Responsive Design**: Mobile-first approach with consistent breakpoints
-- **WordPress Integration**: Direct integration with Blocksy theme customizer settings
+1. [Core Philosophy](#core-philosophy)
+2. [Blocksy Design Tokens](#blocksy-design-tokens)
+3. [Component Architecture](#component-architecture)
+4. [CSS Variable System](#css-variable-system)
+5. [Responsive Breakpoint Strategy](#responsive-breakpoint-strategy)
+6. [Implementation Guidelines](#implementation-guidelines)
+7. [Best Practices](#best-practices)
+8. [Common Patterns](#common-patterns)
+9. [Troubleshooting](#troubleshooting)
 
-## Reference Files
+## Core Philosophy
 
-- **[Component Creation Guide](./COMPONENT_CREATION_GUIDE.md)** - Complete guide for creating components
-- **[Example Blocksy CSS](./example_blocksy.css)** - Actual Blocksy theme CSS variable implementation
+### Design Principles
+1. **Blocksy-First**: Always use Blocksy theme variables for colors, typography, and base spacing
+2. **Component-Scoped**: Create component-specific variables that extend Blocksy tokens
+3. **Variable-Driven Responsive**: Breakpoints only change CSS variables, not rules
+4. **Progressive Enhancement**: Start with mobile, enhance for larger screens
+5. **Maintainability**: Single source of truth for all styling logic
 
-## Blocksy Theme Variables (From example_blocksy.css)
+### Architecture Overview
+```
+Component Styling Architecture:
+├── LG.css (Base styles + all CSS rules)
+├── XS.css (Mobile variable overrides)
+├── SM.css (Small tablet variable overrides)
+├── MD.css (Tablet variable overrides)
+├── XL.css (Large desktop variable overrides)
+└── 2XL.css (Extra large variable overrides)
+```
 
-### Color Palette
-The Blocksy theme provides an 8-color palette system:
+## Blocksy Design Tokens
 
+### Core Color System
 ```css
-/* Primary Brand Colors */
+/* Primary Colors */
 --theme-palette-color-1: #2872fa;  /* Primary blue */
 --theme-palette-color-2: #1559ed;  /* Primary hover blue */
-
-/* Text Colors */
 --theme-palette-color-3: #3A4F66;  /* Main text color */
 --theme-palette-color-4: #192a3d;  /* Headings color */
-
-/* Background Colors */
 --theme-palette-color-5: #e1e8ed;  /* Border color */
 --theme-palette-color-6: #f2f5f7;  /* Light background */
 --theme-palette-color-7: #FAFBFC;  /* Body background */
 --theme-palette-color-8: #ffffff;  /* White/card background */
 
-/* Semantic Color Variables */
+/* Semantic Variables */
 --theme-text-color: var(--theme-palette-color-3);
 --theme-headings-color: var(--theme-palette-color-4);
 --theme-border-color: var(--theme-palette-color-5);
@@ -43,539 +56,584 @@ The Blocksy theme provides an 8-color palette system:
 --theme-link-hover-color: var(--theme-palette-color-2);
 ```
 
-### Typography
+### Button System
 ```css
-/* Font Properties */
---theme-font-family: var(--theme-font-stack-default);
---theme-font-weight: 400;
---theme-font-size: 16px;
---theme-line-height: 1.65;
-
-/* Heading Sizes (from example_blocksy.css) */
-/* h1 */ --theme-font-size: 40px; --theme-line-height: 1.5; --theme-font-weight: 700;
-/* h2 */ --theme-font-size: 35px; --theme-line-height: 1.5; --theme-font-weight: 700;
-/* h3 */ --theme-font-size: 30px; --theme-line-height: 1.5; --theme-font-weight: 700;
-/* h4 */ --theme-font-size: 25px; --theme-line-height: 1.5; --theme-font-weight: 700;
-/* h5 */ --theme-font-size: 20px; --theme-line-height: 1.5; --theme-font-weight: 700;
-/* h6 */ --theme-font-size: 16px; --theme-line-height: 1.5; --theme-font-weight: 700;
-```
-
-### Spacing & Layout
-```css
-/* Content Spacing */
---theme-content-spacing: 1.5em;              /* Primary spacing unit */
---theme-content-vertical-spacing: 60px;      /* Section spacing */
-
-/* Container Widths */
---theme-normal-container-max-width: 1290px;
---theme-narrow-container-max-width: 750px;
---theme-wide-offset: 130px;
---theme-container-edge-spacing: 90vw;
-```
-
-### Buttons
-```css
-/* Button Styling */
---theme-button-min-height: 40px;
---theme-button-font-weight: 500;
---theme-button-font-size: 15px;
---theme-button-padding: 5px 20px;
---theme-button-text-initial-color: #ffffff;
---theme-button-text-hover-color: #ffffff;
 --theme-button-background-initial-color: var(--theme-palette-color-1);
 --theme-button-background-hover-color: var(--theme-palette-color-2);
---theme-button-border: none;
---theme-button-shadow: none;
---theme-button-transform: none;
+--theme-button-text-initial-color: #ffffff;
+--theme-button-padding: 5px 20px;
+--theme-button-min-height: 40px;
+--theme-button-font-weight: 600;
+--theme-button-font-size: 1rem;
 ```
 
-## Component Styling Architecture
-
-### 1. Component CSS Variables and Base Stylesheet
-
-**LG.css as Base Stylesheet**: The `LG.css` file serves as the base stylesheet for each component. This is where you should:
-
-1. **Define component-scoped CSS variables** that extend the Blocksy theme system
-2. **Add custom styles or variables** that don't exist in the [example_blocksy.css](./example_blocksy.css)
-3. **Scope all variables to the component** to prevent conflicts with other components
-
-**LG.css Structure:**
+### Typography Scale
 ```css
-/* Component-scoped variables extending Blocksy theme system */
+--theme-content-spacing: 1.5em;        /* Base spacing unit */
+--theme-content-vertical-spacing: 60px; /* Section spacing */
+
+/* Font sizes (use sparingly, prefer component-specific) */
+--theme-font-size-small: 0.875rem;
+--theme-font-size-base: 1rem;
+--theme-font-size-large: 1.125rem;
+```
+
+## Component Architecture
+
+### File Structure Pattern
+```
+component-name/
+├── fields.php          # CMB2 field definitions
+├── render.php          # PHP logic and context
+├── view.twig           # HTML template
+└── styles/             # Responsive CSS files
+    ├── XS.css         # Mobile (< 576px)
+    ├── SM.css         # Small tablets (≥ 576px)
+    ├── MD.css         # Tablets (≥ 768px)
+    ├── LG.css         # Desktop (≥ 992px) - BASE STYLES
+    ├── XL.css         # Large desktop (≥ 1200px)
+    └── 2XL.css        # Extra large (≥ 1400px)
+```
+
+### Compilation Process
+The system automatically:
+1. Compiles all CSS files in breakpoint order
+2. Wraps breakpoint files in appropriate media queries
+3. Injects compiled CSS inline with the component
+4. Uses component ID for scoping: `#{{ component_id }}`
+
+## CSS Variable System
+
+### Variable Architecture Pattern
+
+#### 1. LG.css - Base Styles (≥ 992px)
+This file contains **ALL CSS rules** and **base variables**:
+
+```css
+/* Component-scoped variables using Blocksy colors */
 #{{ component_id }} {
-    /* Always scope variables to the component ID */
-    --component-bg: var(--theme-palette-color-8);
-    --component-text: var(--theme-text-color);
-    --component-accent: var(--theme-palette-color-1);
-    --component-spacing: var(--theme-content-spacing);
-    --component-border: var(--theme-border-color);
+    /* Layout variables */
+    --hero-padding: 80px;
+    --container-max-width: 1200px;
+    --container-padding: 24px;
+    --content-gap: 60px;
+    --content-grid-columns: 1fr 1.2fr;
     
-    /* Custom variables not in Blocksy theme system */
-    --component-custom-gradient: linear-gradient(135deg, var(--theme-palette-color-1), var(--theme-palette-color-2));
-    --component-hover-lift: -4px;
-    --component-shadow: 0px 12px 18px -6px rgba(34, 56, 101, 0.04);
-    --component-transition: all 0.15s ease;
+    /* Typography variables */
+    --title-font-size: 3.5rem;
+    --title-line-height: 1.1;
+    --title-letter-spacing: -0.02em;
+    --subtitle-font-size: 1.25rem;
+    --subtitle-max-width: 480px;
+    
+    /* Component variables */
+    --card-border-radius: 24px;
+    --card-padding: 24px;
+    --button-padding: 16px 32px;
+    --button-border-radius: 50px;
+    
+    /* Blocksy color integration */
+    --hero-bg: #f0f1f2;
+    --text-primary: var(--theme-headings-color);
+    --text-secondary: var(--theme-text-color);
+    --card-bg: var(--theme-palette-color-8);
+    --button-bg: var(--theme-button-background-initial-color);
+    --button-hover-bg: var(--theme-button-background-hover-color);
+    --button-text: var(--theme-button-text-initial-color);
+    
+    /* Effects */
+    --card-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Desktop-specific component styles */
-.my-component .element {
-    background: var(--component-bg);
-    color: var(--component-text);
-    padding: var(--component-spacing);
-    border: 1px solid var(--component-border);
-    transition: var(--component-transition);
+/* ALL CSS RULES GO HERE - using variables */
+.component-hero {
+    background: var(--hero-bg);
+    padding: var(--hero-padding) 0;
 }
 
-.my-component .element:hover {
-    transform: translateY(var(--component-hover-lift));
-    box-shadow: var(--component-shadow);
-}
-```
-
-**Best Practices for LG.css:**
-- ✅ **Use actual Blocksy theme variables** from [example_blocksy.css](./example_blocksy.css)
-- ✅ **Scope all custom variables** to `#{{ component_id }}`
-- ✅ **Use semantic variable names** that describe purpose, not appearance
-- ✅ **Extend theme variables** rather than creating completely new values
-- ❌ **Don't create variables** that already exist in the Blocksy theme system
-
-**Key Theme Variables to Use:**
-- Colors: `--theme-palette-color-1` through `--theme-palette-color-8`
-- Typography: `--theme-text-color`, `--theme-headings-color`, `--theme-font-size`
-- Spacing: `--theme-content-spacing`, `--theme-content-vertical-spacing`
-- Buttons: `--theme-button-*` variables
-- Layout: `--theme-normal-container-max-width`, `--theme-border-color`
-
-### 2. Responsive CSS Structure
-
-Each component uses separate CSS files for different breakpoints:
-
-```
-styles/
-├── XS.css     # Mobile (< 576px)
-├── SM.css     # Small tablets (≥ 576px)
-├── MD.css     # Tablets (≥ 768px)
-├── LG.css     # Desktop Base (≥ 992px) - Contains component CSS variables
-├── XL.css     # Large desktop (≥ 1200px)
-└── 2XL.css    # Extra large (≥ 1400px)
-```
-
-**Important**: The `LG.css` file serves as the **base stylesheet** for each component. This is where you should define component-scoped CSS variables and any custom styles that don't exist in the [example_blocksy.css](./example_blocksy.css). Always prefer using existing Blocksy theme variables before creating custom ones.
-
-### 3. Breakpoint-Specific Styling
-
-**XS.css** (Mobile-first):
-```css
-/* Mobile styles using Blocksy theme variables */
-.feature-grid .grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--theme-content-spacing);
-    padding: var(--theme-content-spacing);
-}
-
-.feature-grid .card {
-    padding: var(--theme-content-spacing);
-    border-radius: 8px;
-    background: var(--theme-palette-color-8);
-    border: 1px solid var(--theme-border-color);
-}
-```
-
-**LG.css** (Desktop Base Stylesheet):
-```css
-/* Component-scoped variables (define in LG.css) */
-#{{ component_id }} {
-    --grid-columns: 3;
-    --grid-gap: calc(var(--theme-content-spacing) * 1.5);
-    --card-hover-lift: -4px;
-    --card-transition: all 0.15s ease;
-    --card-shadow: 0px 12px 18px -6px rgba(34, 56, 101, 0.04);
-    --card-shadow-hover: 0px 15px 25px -5px rgba(34, 56, 101, 0.15);
-}
-
-/* Desktop styles using component variables */
-.feature-grid .grid {
-    grid-template-columns: repeat(var(--grid-columns), 1fr);
-    gap: var(--grid-gap);
-    padding: calc(var(--theme-content-spacing) * 1.5);
-}
-
-.feature-grid .card {
-    box-shadow: var(--card-shadow);
-    transition: var(--card-transition);
-}
-
-.feature-grid .card:hover {
-    transform: translateY(var(--card-hover-lift));
-    box-shadow: var(--card-shadow-hover);
-}
-```
-
-## Component Patterns
-
-### Card Pattern
-```css
-.my-component .card {
-    /* Use Blocksy theme card pattern */
-    background: var(--theme-palette-color-8);
-    border: 1px solid var(--theme-border-color);
-    border-radius: 8px;
-    box-shadow: 0px 12px 18px -6px rgba(34, 56, 101, 0.04);
-    padding: var(--theme-content-spacing);
-    transition: all 0.15s ease;
-}
-
-.my-component .card:hover {
-    box-shadow: 0px 15px 25px -5px rgba(34, 56, 101, 0.15);
-    transform: translateY(-4px);
-}
-```
-
-### Button Pattern
-```css
-.my-component .button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: var(--theme-button-padding);
-    background: var(--theme-button-background-initial-color);
-    color: var(--theme-button-text-initial-color);
-    border-radius: 4px;
-    font-weight: var(--theme-button-font-weight);
-    font-size: var(--theme-button-font-size);
-    min-height: var(--theme-button-min-height);
-    border: var(--theme-button-border);
-    text-decoration: none;
-    transition: all 0.15s ease;
-}
-
-.my-component .button:hover {
-    background: var(--theme-button-background-hover-color);
-    color: var(--theme-button-text-hover-color);
-    transform: translateY(-2px);
-}
-```
-
-### Grid Pattern
-```css
-.my-component .grid {
-    display: grid;
-    gap: var(--theme-content-spacing);
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    max-width: var(--theme-normal-container-max-width);
+.component-hero__container {
+    max-width: var(--container-max-width);
     margin: 0 auto;
+    padding: 0 var(--container-padding);
+}
+
+.component-hero__content {
+    display: grid;
+    grid-template-columns: var(--content-grid-columns);
+    gap: var(--content-gap);
+}
+
+.component-hero__title {
+    font-size: var(--title-font-size);
+    line-height: var(--title-line-height);
+    letter-spacing: var(--title-letter-spacing);
+    color: var(--text-primary);
+}
+
+.component-hero__button {
+    padding: var(--button-padding);
+    background: var(--button-bg);
+    color: var(--button-text);
+    border-radius: var(--button-border-radius);
+    transition: var(--transition);
+}
+
+.component-hero__button:hover {
+    background: var(--button-hover-bg);
+}
+
+/* All other CSS rules... */
+```
+
+#### 2. Breakpoint Files - Variable Overrides Only
+Smaller breakpoints only override variables, no CSS rules:
+
+**XS.css (Mobile < 576px):**
+```css
+/* Mobile variable overrides */
+#{{ component_id }} {
+    --hero-padding: 60px;
+    --container-padding: 20px;
+    --content-gap: 48px;
+    --title-font-size: 2rem;
+    --title-letter-spacing: -0.015em;
+    --subtitle-font-size: 1rem;
+    --card-border-radius: 20px;
+    --card-padding: 20px;
+    --button-padding: 14px 28px;
+}
+
+/* Layout-specific overrides only */
+.component-hero__content {
+    display: flex;
+    flex-direction: column;
+}
+
+.component-hero__text-section {
+    order: 2;
+    text-align: center;
+}
+
+.component-hero__showcase {
+    order: 1;
 }
 ```
 
-### Typography Pattern
+**SM.css (Small Tablets ≥ 576px):**
 ```css
-.my-component .title {
-    font-size: 2rem; /* or use heading variables from example_blocksy.css */
-    color: var(--theme-headings-color);
-    font-weight: 700;
-    line-height: 1.5;
-    margin-bottom: calc(var(--theme-content-spacing) * 0.5);
+#{{ component_id }} {
+    --hero-padding: 70px;
+    --title-font-size: 2.5rem;
+    --content-grid-columns: 1.2fr 1fr;
 }
 
-.my-component .text {
-    color: var(--theme-text-color);
-    font-size: var(--theme-font-size);
-    line-height: var(--theme-line-height);
+/* Minimal layout overrides */
+.component-hero__content {
+    display: grid;
+}
+```
+
+**MD.css (Tablets ≥ 768px):**
+```css
+#{{ component_id }} {
+    --container-max-width: 1000px;
+    --content-gap: 48px;
+    --title-font-size: 3rem;
+    --subtitle-font-size: 1.2rem;
 }
 
-.my-component .link {
-    color: var(--theme-link-initial-color);
-    text-decoration: none;
+.component-hero__text-section {
+    text-align: left;
+}
+```
+
+**XL.css (Large Desktop ≥ 1200px):**
+```css
+#{{ component_id }} {
+    --hero-padding: 100px;
+    --container-max-width: 1300px;
+    --content-gap: 80px;
+    --title-font-size: 4rem;
+    --subtitle-font-size: 1.375rem;
+    --card-padding: 28px;
+}
+```
+
+**2XL.css (Extra Large ≥ 1400px):**
+```css
+#{{ component_id }} {
+    --hero-padding: 120px;
+    --container-max-width: 1400px;
+    --content-gap: 100px;
+    --title-font-size: 4.75rem;
+    --title-letter-spacing: -0.03em;
+    --subtitle-font-size: 1.5rem;
+}
+```
+
+## Responsive Breakpoint Strategy
+
+### Breakpoint Definitions
+```css
+/* XS: < 576px    - Mobile phones */
+/* SM: ≥ 576px    - Large phones, small tablets */
+/* MD: ≥ 768px    - Tablets */
+/* LG: ≥ 992px    - Small laptops, large tablets (BASE) */
+/* XL: ≥ 1200px   - Laptops, desktops */
+/* 2XL: ≥ 1400px  - Large desktops, ultrawide */
+```
+
+### Design Approach
+1. **LG as Base**: Desktop-first approach with LG containing all CSS rules
+2. **Mobile Overrides**: XS/SM override variables for smaller screens
+3. **Progressive Enhancement**: MD/XL/2XL enhance for larger screens
+4. **Variable-Only Changes**: Breakpoints primarily change variables, not structure
+
+### Scaling Patterns
+```css
+/* Typography Scaling */
+Mobile (XS):    2rem    → 2.5rem    → 3rem     → 3.5rem   → 4rem     → 4.75rem
+                (XS)      (SM)        (MD)       (LG base)  (XL)       (2XL)
+
+/* Spacing Scaling */
+Padding:        60px    → 70px      → 80px     → 80px     → 100px    → 120px
+Gap:            48px    → 56px      → 48px     → 60px     → 80px     → 100px
+
+/* Component Scaling */
+Border Radius:  20px    → 22px      → 24px     → 24px     → 26px     → 28px
+Button Padding: 14px 28px → 16px 32px → 16px 32px → 16px 32px → 18px 36px → 20px 40px
+```
+
+## Implementation Guidelines
+
+### 1. Starting a New Component
+
+**Step 1: Define Base Variables in LG.css**
+```css
+#{{ component_id }} {
+    /* Layout */
+    --component-padding: 80px;
+    --container-max-width: 1200px;
+    --content-gap: 60px;
+    
+    /* Typography */
+    --title-size: 3.5rem;
+    --subtitle-size: 1.25rem;
+    
+    /* Components */
+    --card-radius: 24px;
+    --button-radius: 50px;
+    
+    /* Blocksy Integration */
+    --primary-bg: var(--theme-palette-color-1);
+    --text-color: var(--theme-text-color);
+    --card-bg: var(--theme-palette-color-8);
+}
+```
+
+**Step 2: Write All CSS Rules Using Variables**
+```css
+.component-name {
+    padding: var(--component-padding) 0;
+    background: var(--primary-bg);
 }
 
-.my-component .link:hover {
-    color: var(--theme-link-hover-color);
+.component-name__title {
+    font-size: var(--title-size);
+    color: var(--text-color);
 }
+```
+
+**Step 3: Create Responsive Overrides**
+Only override the variables that need to change per breakpoint.
+
+### 2. Variable Naming Conventions
+
+**Hierarchy Pattern:**
+```css
+/* Layout */
+--component-padding
+--container-max-width
+--content-gap
+--section-spacing
+
+/* Typography */
+--title-font-size
+--title-line-height
+--title-letter-spacing
+--subtitle-font-size
+--body-font-size
+
+/* Components */
+--card-padding
+--card-border-radius
+--button-padding
+--button-border-radius
+--icon-size
+
+/* Spacing */
+--element-gap
+--item-spacing
+--margin-bottom
+```
+
+**Descriptive Names:**
+```css
+/* ✅ Good */
+--hero-title-size
+--product-card-padding
+--cta-button-radius
+
+/* ❌ Avoid */
+--size-1
+--padding-large
+--radius
+```
+
+### 3. Blocksy Integration Patterns
+
+**Color Integration:**
+```css
+/* Always use Blocksy variables for colors */
+--primary-color: var(--theme-palette-color-1);
+--secondary-color: var(--theme-palette-color-2);
+--text-primary: var(--theme-headings-color);
+--text-secondary: var(--theme-text-color);
+--border-color: var(--theme-border-color);
+--background-color: var(--theme-palette-color-8);
+```
+
+**Button Integration:**
+```css
+/* Extend Blocksy button system */
+--button-bg: var(--theme-button-background-initial-color);
+--button-hover-bg: var(--theme-button-background-hover-color);
+--button-text: var(--theme-button-text-initial-color);
+--button-min-height: var(--theme-button-min-height);
+--button-font-weight: var(--theme-button-font-weight);
+```
+
+**Spacing Integration:**
+```css
+/* Use theme spacing as base, create component-specific */
+--base-spacing: var(--theme-content-spacing);  /* 1.5em */
+--component-gap: calc(var(--base-spacing) * 2); /* 3em */
+--section-padding: calc(var(--base-spacing) * 4); /* 6em */
 ```
 
 ## Best Practices
 
-### 1. Always Use Blocksy Theme Variables
+### 1. Variable Organization
 ```css
-/* ✅ Good - Using actual Blocksy theme variables */
-.component {
-    color: var(--theme-text-color);
-    padding: var(--theme-content-spacing);
-    border: 1px solid var(--theme-border-color);
-    background: var(--theme-palette-color-8);
-}
-
-/* ❌ Bad - Hard-coded values */
-.component {
-    color: #3A4F66;
-    padding: 24px;
-    border: 1px solid #e1e8ed;
-    background: #ffffff;
-}
-```
-
-### 2. Scope Variables to Components (Always in LG.css)
-```css
-/* ✅ Good - Component-scoped variables in LG.css */
 #{{ component_id }} {
-    --card-bg: var(--theme-palette-color-8);
-    --card-hover-bg: var(--theme-palette-color-7);
-    --card-border: var(--theme-border-color);
-    --card-text: var(--theme-text-color);
-    --card-accent: var(--theme-palette-color-1);
+    /* 1. Layout variables first */
+    --component-padding: 80px;
+    --container-max-width: 1200px;
     
-    /* Custom variables for component-specific needs */
-    --card-shadow: 0px 12px 18px -6px rgba(34, 56, 101, 0.04);
-    --card-hover-lift: -4px;
-    --card-transition: all 0.15s ease;
-}
-
-#{{ component_id }} .card {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    color: var(--card-text);
-    box-shadow: var(--card-shadow);
-    transition: var(--card-transition);
-}
-
-#{{ component_id }} .card:hover {
-    background: var(--card-hover-bg);
-    transform: translateY(var(--card-hover-lift));
+    /* 2. Typography variables */
+    --title-font-size: 3.5rem;
+    --subtitle-font-size: 1.25rem;
+    
+    /* 3. Component-specific variables */
+    --card-border-radius: 24px;
+    --button-padding: 16px 32px;
+    
+    /* 4. Blocksy color integration */
+    --primary-color: var(--theme-palette-color-1);
+    --text-color: var(--theme-text-color);
+    
+    /* 5. Effects and transitions */
+    --box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+    --transition: all 0.3s ease;
 }
 ```
 
-### 3. Mobile-First Responsive Design
+### 2. Responsive Design Rules
+1. **Mobile-First Mindset**: Design for mobile, enhance for desktop
+2. **Variable Scaling**: Use consistent scaling ratios across breakpoints
+3. **Layout Flexibility**: Change layout structure only when necessary
+4. **Performance**: Minimize CSS rule duplication across breakpoints
+
+### 3. Blocksy Integration
+1. **Always Use Theme Colors**: Never hardcode colors that exist in Blocksy
+2. **Extend, Don't Replace**: Build on Blocksy's button/typography system
+3. **Semantic Variables**: Use semantic Blocksy variables over palette numbers
+4. **Consistent Shadows**: Use similar shadow patterns to Blocksy components
+
+## Common Patterns
+
+### 1. Hero Section Pattern
 ```css
-/* XS.css - Mobile first */
-.component {
-    padding: var(--theme-content-spacing);
-    font-size: var(--theme-font-size);
-}
-
-/* LG.css - Desktop enhancement */
-.component {
-    padding: calc(var(--theme-content-spacing) * 1.5);
-    font-size: 1.125rem;
-}
-```
-
-### 4. Consistent Hover States
-```css
-.component .interactive-element {
-    transition: all 0.15s ease;
-}
-
-.component .interactive-element:hover {
-    transform: translateY(-2px);
-    box-shadow: 0px 12px 18px -6px rgba(34, 56, 101, 0.04);
-}
-```
-
-### 5. Respect Theme Customizer Settings
-The Blocksy theme variables automatically reflect user customizer settings:
-
-```css
-/* Variables automatically use customizer settings */
-.component {
-    background: var(--theme-palette-color-8); /* Uses user's white color choice */
-    color: var(--theme-text-color); /* Uses user's text color choice */
-    border-color: var(--theme-border-color); /* Uses user's border color choice */
-}
-```
-
-### 6. Use Semantic Variable Names in Components
-```css
-/* ✅ Good - Semantic component variable names */
 #{{ component_id }} {
-    --pricing-card-bg: var(--theme-palette-color-8);
-    --pricing-featured-border: var(--theme-palette-color-1);
-    --pricing-text-muted: var(--theme-text-color);
+    /* Hero-specific variables */
+    --hero-min-height: 600px;
+    --hero-content-gap: 60px;
+    --hero-grid-columns: 1fr 1.2fr;
+    
+    /* Blocksy integration */
+    --hero-bg: var(--theme-palette-color-7);
+    --hero-text: var(--theme-text-color);
+    --hero-heading: var(--theme-headings-color);
 }
 
-/* ❌ Bad - Non-semantic names */
-#{{ component_id }} {
-    --blue-border: var(--theme-palette-color-1);
-    --white-bg: var(--theme-palette-color-8);
+.hero-component {
+    min-height: var(--hero-min-height);
+    background: var(--hero-bg);
+    color: var(--hero-text);
+}
+
+.hero-component__content {
+    display: grid;
+    grid-template-columns: var(--hero-grid-columns);
+    gap: var(--hero-content-gap);
 }
 ```
 
-## Implementation Example: Pricing Card Component
-
-Here's a complete example showing the corrected pricing card component using the actual Blocksy theme system:
-
-**view.twig**:
-```html
-{# Styles and scripts are auto-enqueued by compileComponent() #}
-<section id="{{ component_id }}" class="pricing-card">
-    <div class="pricing-card-container {{ card_style }} {{ alignment }} {% if featured %}featured{% endif %}">
-        {% if featured and featured_badge %}
-            <div class="featured-badge">{{ featured_badge }}</div>
-        {% endif %}
-        
-        <div class="card-header">
-            <h3 class="plan-name">{{ plan_name }}</h3>
-            {% if plan_description %}
-                <p class="plan-description">{{ plan_description }}</p>
-            {% endif %}
-        </div>
-        
-        <div class="card-pricing">
-            <div class="price">{{ price }}</div>
-            {% if billing_period %}
-                <div class="billing-period">{{ billing_period }}</div>
-            {% endif %}
-        </div>
-        
-        {% if features %}
-            <div class="card-features">
-                <ul class="features-list">
-                    {% for feature in features %}
-                        <li class="feature-item {{ feature.included ? 'included' : 'not-included' }}">
-                            <span class="feature-icon">{{ feature.included ? '✓' : '✗' }}</span>
-                            <span class="feature-text">{{ feature.text }}</span>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
-        {% endif %}
-        
-        <div class="card-actions">
-            <a href="{{ cta_url }}" class="cta-button primary">{{ cta_text }}</a>
-        </div>
-    </div>
-</section>
-```
-
-**styles/XS.css**:
+### 2. Card Grid Pattern
 ```css
-/* Mobile styles using Blocksy theme variables */
-.pricing-card {
-    padding: calc(var(--theme-content-spacing) * 0.75);
-}
-
-.pricing-card .pricing-card-container {
-    padding: var(--theme-content-spacing);
-    width: 100%;
-    max-width: 100%;
-}
-
-.pricing-card .plan-name {
-    font-size: 1.125rem;
-}
-
-.pricing-card .price {
-    font-size: 2rem;
-}
-
-.pricing-card .feature-item {
-    padding: calc(var(--theme-content-spacing) * 0.4) 0;
-}
-
-.pricing-card .card-actions {
-    flex-direction: column;
-    gap: calc(var(--theme-content-spacing) * 0.4);
-}
-```
-
-**styles/LG.css** (Base Stylesheet with Blocksy variables):
-```css
-/* Component-scoped variables extending Blocksy theme system */
 #{{ component_id }} {
+    --grid-columns: repeat(auto-fit, minmax(300px, 1fr));
+    --grid-gap: 24px;
+    --card-padding: 32px;
+    --card-radius: 16px;
+    --card-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+    
+    /* Blocksy colors */
     --card-bg: var(--theme-palette-color-8);
-    --card-border: var(--theme-palette-color-5);
-    --card-featured-border: var(--theme-palette-color-1);
-    --card-hover-lift: -6px;
-    --card-transition: all 0.15s ease;
-    --card-gradient: linear-gradient(135deg, var(--theme-palette-color-1), var(--theme-palette-color-2));
-    --card-shadow: 0px 12px 18px -6px rgba(34, 56, 101, 0.04);
-    --card-shadow-hover: 0px 15px 25px -5px rgba(34, 56, 101, 0.15);
-    --card-padding: var(--theme-content-spacing);
-    --card-border-radius: 8px;
+    --card-text: var(--theme-text-color);
+    --card-border: var(--theme-border-color);
 }
 
-/* Desktop styles using component variables and Blocksy system */
-.pricing-card {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: var(--card-padding);
+.card-grid {
+    display: grid;
+    grid-template-columns: var(--grid-columns);
+    gap: var(--grid-gap);
 }
 
-.pricing-card .pricing-card-container {
+.card {
     background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: var(--card-border-radius);
-    box-shadow: var(--card-shadow);
+    color: var(--card-text);
     padding: var(--card-padding);
-    position: relative;
-    transition: var(--card-transition);
-    width: 100%;
-    max-width: 400px;
-}
-
-.pricing-card .pricing-card-container:hover {
-    transform: translateY(var(--card-hover-lift));
-    box-shadow: var(--card-shadow-hover);
-}
-
-.pricing-card .pricing-card-container.featured {
-    border-color: var(--card-featured-border);
-    transform: scale(1.02);
-    box-shadow: var(--card-shadow-hover);
-}
-
-.pricing-card .pricing-card-container.card-style-gradient {
-    background: var(--card-gradient);
-    color: var(--theme-palette-color-8);
-    border: none;
-}
-
-.pricing-card .plan-name {
-    font-size: 1.25rem;
-    color: var(--theme-headings-color);
-    margin-bottom: calc(var(--theme-content-spacing) * 0.5);
-    font-weight: var(--theme-font-weight);
-}
-
-.pricing-card .price {
-    font-size: 2.5rem;
-    color: var(--theme-headings-color);
-    font-weight: 700;
-    margin-bottom: calc(var(--theme-content-spacing) * 0.25);
-}
-
-.pricing-card .cta-button {
-    padding: var(--theme-button-padding);
-    background: var(--theme-button-background-initial-color);
-    color: var(--theme-button-text-initial-color);
-    font-weight: var(--theme-button-font-weight);
-    font-size: var(--theme-button-font-size);
-    min-height: var(--theme-button-min-height);
-    text-decoration: none;
-    border-radius: 4px;
-    transition: var(--card-transition);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.pricing-card .cta-button:hover {
-    background: var(--theme-button-background-hover-color);
-    color: var(--theme-button-text-hover-color);
-    transform: translateY(-2px);
+    border-radius: var(--card-radius);
+    box-shadow: var(--card-shadow);
+    border: 1px solid var(--card-border);
 }
 ```
 
-This implementation demonstrates:
+### 3. Button Variants Pattern
+```css
+#{{ component_id }} {
+    /* Primary button (uses Blocksy defaults) */
+    --btn-primary-bg: var(--theme-button-background-initial-color);
+    --btn-primary-hover: var(--theme-button-background-hover-color);
+    --btn-primary-text: var(--theme-button-text-initial-color);
+    
+    /* Secondary button */
+    --btn-secondary-bg: transparent;
+    --btn-secondary-hover: var(--theme-palette-color-1);
+    --btn-secondary-text: var(--theme-palette-color-1);
+    --btn-secondary-border: var(--theme-palette-color-1);
+    
+    /* Button sizing */
+    --btn-padding: var(--theme-button-padding);
+    --btn-radius: 50px;
+    --btn-min-height: var(--theme-button-min-height);
+}
 
-1. **Proper use of Blocksy theme variables** from `example_blocksy.css`
-2. **Component-scoped custom variables** in the `LG.css` file
-3. **Responsive design** with mobile-first approach
-4. **Semantic variable naming** that describes purpose, not appearance
-5. **Integration with WordPress theme customizer** settings through Blocksy variables
+.component-button {
+    padding: var(--btn-padding);
+    border-radius: var(--btn-radius);
+    min-height: var(--btn-min-height);
+    font-weight: var(--theme-button-font-weight);
+    transition: var(--transition);
+}
 
-## Related Documentation
+.component-button--primary {
+    background: var(--btn-primary-bg);
+    color: var(--btn-primary-text);
+}
 
-- **[Component Creation Guide](./COMPONENT_CREATION_GUIDE.md)** - Complete guide for creating components
-- **[Example Blocksy CSS](./example_blocksy.css)** - Actual Blocksy theme CSS variable implementation used in this project
+.component-button--primary:hover {
+    background: var(--btn-primary-hover);
+}
+
+.component-button--secondary {
+    background: var(--btn-secondary-bg);
+    color: var(--btn-secondary-text);
+    border: 2px solid var(--btn-secondary-border);
+}
+```
+
+## Troubleshooting
+
+### Common Issues
+
+**1. Variables Not Working**
+```css
+/* ❌ Problem: Variable not scoped to component */
+:root {
+    --title-size: 3rem;
+}
+
+/* ✅ Solution: Scope to component ID */
+#{{ component_id }} {
+    --title-size: 3rem;
+}
+```
+
+**2. Responsive Scaling Issues**
+```css
+/* ❌ Problem: Inconsistent scaling */
+--title-size: 2rem;    /* XS */
+--title-size: 4rem;    /* SM - too big jump */
+
+/* ✅ Solution: Progressive scaling */
+--title-size: 2rem;    /* XS */
+--title-size: 2.5rem;  /* SM */
+--title-size: 3rem;    /* MD */
+--title-size: 3.5rem;  /* LG */
+```
+
+**3. Color Consistency Issues**
+```css
+/* ❌ Problem: Hardcoded colors */
+--card-bg: #ffffff;
+--text-color: #333333;
+
+/* ✅ Solution: Use Blocksy variables */
+--card-bg: var(--theme-palette-color-8);
+--text-color: var(--theme-text-color);
+```
+
+**4. Layout Breaking on Mobile**
+```css
+/* ❌ Problem: Desktop grid on mobile */
+.component__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Breaks on mobile */
+}
+
+/* ✅ Solution: Override layout structure */
+/* XS.css */
+.component__content {
+    display: flex;
+    flex-direction: column;
+}
+```
+
+### Debugging Tips
+1. **Use Browser DevTools**: Inspect computed values of CSS variables
+2. **Check Variable Scope**: Ensure variables are scoped to `#{{ component_id }}`
+3. **Verify Media Queries**: Confirm breakpoint CSS is loading at correct screen sizes
+4. **Test Blocksy Integration**: Check that Blocksy variables are available and working
+
+### Performance Considerations
+1. **Minimize Variable Count**: Only create variables for values that change
+2. **Avoid Deep Nesting**: Keep variable calculations simple
+3. **Group Related Variables**: Organize variables logically for better compression
+4. **Use Semantic Names**: Descriptive names improve maintainability without performance cost
+
+---
+
+This system ensures consistent, maintainable, and scalable component styling that integrates seamlessly with the Blocksy theme while providing maximum flexibility for responsive design.

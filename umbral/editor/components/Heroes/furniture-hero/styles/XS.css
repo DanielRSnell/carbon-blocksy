@@ -1,0 +1,95 @@
+/* Mobile styles (< 576px) - Cards first, text below */
+#{{ component_id }} {
+    /* Mobile layout variables */
+    --hero-padding: 60px;
+    --container-padding: 20px;
+    --content-gap: 48px;
+    
+    /* Mobile text variables */
+    --text-gap: 20px;
+    --title-font-size: 2rem;
+    --title-line-height: 1.15;
+    --title-letter-spacing: -0.015em;
+    --title-margin-bottom: 0;
+    --subtitle-font-size: 1rem;
+    --subtitle-margin-bottom: 0;
+    --experts-gap: 12px;
+    --experts-margin-bottom: 0;
+    --avatar-size: 32px;
+    --avatar-gap: 6px;
+    --expert-text-size: 0.875rem;
+    --button-padding: 14px 28px;
+    --button-font-size: 1rem;
+    --button-min-height: 48px;
+    
+    /* Mobile cards variables */
+    --cards-gap: 16px;
+    --card-border-radius: 20px;
+    --card-padding: 20px;
+    --card-info-padding: 14px;
+    --card-info-border-radius: 10px;
+    --product-name-size: 1rem;
+    --product-name-margin: 0 0 4px 0;
+    --product-price-size: 0.9rem;
+    --product-link-size: 40px;
+    --product-link-margin-top: 12px;
+    
+    /* Mobile promo variables */
+    --promo-padding: 32px 24px;
+    --promo-gap: 16px;
+    --promo-title-size: 1.5rem;
+    --promo-title-line-height: 1.2;
+    --promo-desc-size: 0.85rem;
+    --promo-desc-line-height: 1.4;
+    --promo-button-padding: 10px 20px;
+    --promo-button-size: 0.875rem;
+}
+
+/* Mobile-specific layout overrides */
+.furniture-hero__content {
+    display: flex;
+    flex-direction: column;
+    min-height: auto;
+}
+
+.furniture-hero__showcase {
+    order: 1;
+}
+
+.furniture-hero__text-section {
+    order: 2;
+    text-align: center;
+}
+
+.furniture-hero__cards {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+}
+
+.furniture-hero__product-card {
+    height: 240px;
+    min-height: 240px;
+}
+
+.furniture-hero__product-card:first-child {
+    order: 1;
+}
+
+.furniture-hero__product-card.product-card-2 {
+    order: 2;
+}
+
+.furniture-hero__promo-card {
+    order: 3;
+    min-height: 180px;
+}
+
+.furniture-hero__experts {
+    justify-content: center;
+}
+
+.furniture-hero__button {
+    align-self: center;
+    max-width: 200px;
+}

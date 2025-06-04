@@ -168,6 +168,12 @@ umbral/editor/components/
 3. Implement rendering logic in `render.php`
 4. Create Timber template in `view.twig`
 5. Add responsive styles in `styles/` directory
+6. Add JavaScript in `scripts/` directory (REQUIRED for compilation)
+
+**IMPORTANT: JavaScript File Location**:
+- ✅ **Required**: `/component-name/scripts/example.js`
+- ❌ **Will not render**: `/component-name/example.js`
+- Only JavaScript files in the `scripts/` directory are compiled and rendered
 
 **Component Registration Example**:
 ```php
@@ -187,6 +193,27 @@ umbral_register_component('Content', 'blog-posts', [
 ]);
 ```
 
+**Render.php Pattern**:
+```php
+// Standard render.php structure
+$component_dir = dirname(__FILE__);
+$component_name = basename($component_dir);
+$category_name = basename(dirname($component_dir));
+
+// Process component data with defaults
+$component_context = [
+    'title' => $component_data['title'] ?? 'Default Title',
+    'component_id' => $category_name . '-' . $component_name
+];
+
+// Auto-compile and enqueue assets
+compileComponent($component_dir, $component_context);
+
+// Merge contexts and render
+$merged_context = array_merge($context, $component_context);
+echo Timber::compile('@components/' . $category_name . '/' . $component_name . '/view.twig', $merged_context);
+```
+
 ### Development Guidelines
 
 **When to Use Each System**:
@@ -198,3 +225,68 @@ umbral_register_component('Content', 'blog-posts', [
 - Both use Timber/Twig for templating
 - Both follow file-based auto-discovery patterns
 - Both support component isolation and reusability
+
+### Blocksy Design System Integration
+
+**CSS Variables and Styling**:
+- All components should use the Blocksy theme design system
+- `LG.css` serves as the base stylesheet containing component-scoped CSS variables
+- Always prefer existing Blocksy theme variables before creating custom ones
+
+**Core Blocksy Variables** (from `example_blocksy.css`):
+```css
+/* Colors */
+--theme-palette-color-1: #2872fa;  /* Primary blue */
+--theme-palette-color-2: #1559ed;  /* Primary hover blue */
+--theme-palette-color-3: #3A4F66;  /* Main text color */
+--theme-palette-color-4: #192a3d;  /* Headings color */
+--theme-palette-color-5: #e1e8ed;  /* Border color */
+--theme-palette-color-6: #f2f5f7;  /* Light background */
+--theme-palette-color-7: #FAFBFC;  /* Body background */
+--theme-palette-color-8: #ffffff;  /* White/card background */
+
+/* Semantic Variables */
+--theme-text-color: var(--theme-palette-color-3);
+--theme-headings-color: var(--theme-palette-color-4);
+--theme-border-color: var(--theme-palette-color-5);
+--theme-link-initial-color: var(--theme-palette-color-1);
+--theme-link-hover-color: var(--theme-palette-color-2);
+
+/* Spacing */
+--theme-content-spacing: 1.5em;
+--theme-content-vertical-spacing: 60px;
+
+/* Buttons */
+--theme-button-background-initial-color: var(--theme-palette-color-1);
+--theme-button-background-hover-color: var(--theme-palette-color-2);
+--theme-button-text-initial-color: #ffffff;
+--theme-button-padding: 5px 20px;
+--theme-button-min-height: 40px;
+```
+
+**Component Styling Pattern**:
+```css
+/* LG.css - Base stylesheet with component-scoped variables */
+#{{ component_id }} {
+    /* Extend Blocksy variables with component-specific needs */
+    --card-bg: var(--theme-palette-color-8);
+    --card-text: var(--theme-text-color);
+    --card-border: var(--theme-border-color);
+    --card-shadow: 0px 12px 18px -6px rgba(34, 56, 101, 0.04);
+    --card-transition: all 0.15s ease;
+}
+
+.component .card {
+    background: var(--card-bg);
+    color: var(--card-text);
+    border: 1px solid var(--card-border);
+    box-shadow: var(--card-shadow);
+    transition: var(--card-transition);
+}
+```
+
+**Asset Compilation**:
+- Use `compileComponent($component_dir, $component_context)` in render.php
+- Automatically compiles and enqueues CSS from `styles/` directory
+- Automatically compiles and enqueues JS from `scripts/` directory
+- Applies appropriate media queries to breakpoint-specific CSS files

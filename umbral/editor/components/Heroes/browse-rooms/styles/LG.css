@@ -1,0 +1,263 @@
+/* Component-scoped variables using Blocksy colors */
+#{{ component_id }} {
+    /* Layout variables */
+    --section-padding: 80px;
+    --container-max-width: 1200px;
+    --container-padding: 24px;
+    --content-gap: 60px;
+    --grid-gap: 20px;
+    
+    /* Header variables */
+    --header-gap: 24px;
+    --header-max-width: 600px;
+    --title-font-size: 3rem;
+    --title-line-height: 1.1;
+    --title-letter-spacing: -0.02em;
+    --title-margin-bottom: 16px;
+    --description-font-size: 1.125rem;
+    --description-line-height: 1.6;
+    --description-opacity: 0.9;
+    
+    /* Card variables */
+    --featured-card-height: 520px;
+    --grid-card-height: 250px;
+    --card-border-radius: {{ card_border_radius }};
+    --card-padding: 32px;
+    --card-overlay-opacity: 0.4;
+    --card-content-gap: 8px;
+    
+    /* Typography variables */
+    --room-name-size: 1.5rem;
+    --room-name-weight: 600;
+    --room-name-line-height: 1.2;
+    --product-count-size: 0.875rem;
+    --product-count-weight: 500;
+    --product-count-opacity: 0.9;
+    
+    /* Grid layout variables */
+    --grid-columns: 1fr 1fr;
+    --grid-rows: auto auto;
+    --featured-grid-template: 1fr 1.2fr;
+    
+    /* Blocksy color integration */
+    --section-bg: {{ background_color }};
+    --card-overlay-bg: {{ card_overlay_color }};
+    --text-white: #ffffff;
+    --placeholder-bg: var(--theme-palette-color-6);
+    --placeholder-text: var(--theme-text-color);
+    
+    /* Interactive elements */
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --hover-transform: translateY(-8px);
+    --hover-scale: 1.02;
+    --card-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    --card-hover-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+
+/* Desktop layout - using CSS variables */
+.browse-rooms {
+    background: var(--section-bg);
+    padding: var(--section-padding) 0;
+    min-height: 600px;
+}
+
+.browse-rooms__container {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+}
+
+/* Header styling */
+.browse-rooms__header {
+    text-align: center;
+    margin-bottom: var(--content-gap);
+    max-width: var(--header-max-width);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.browse-rooms__title {
+    font-size: var(--title-font-size);
+    font-weight: 700;
+    line-height: var(--title-line-height);
+    letter-spacing: var(--title-letter-spacing);
+    margin: var(--title-margin-bottom);
+}
+
+.browse-rooms__description {
+    font-size: var(--description-font-size);
+    line-height: var(--description-line-height);
+    opacity: var(--description-opacity);
+    margin: 0;
+}
+
+/* Content layout */
+.browse-rooms__content {
+    display: grid;
+    grid-template-columns: var(--featured-grid-template);
+    gap: var(--grid-gap);
+    min-height: var(--featured-card-height);
+}
+
+/* Featured room card */
+.browse-rooms__featured {
+    position: relative;
+}
+
+.browse-rooms__card {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--text-white);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: var(--transition);
+    height: 100%;
+    min-height: 200px;
+}
+
+.browse-rooms__card--featured {
+    min-height: var(--featured-card-height);
+}
+
+.browse-rooms__card--grid {
+    min-height: var(--grid-card-height);
+}
+
+/* Card overlay */
+.browse-rooms__card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--card-overlay-bg);
+    transition: var(--transition);
+}
+
+/* Card content */
+.browse-rooms__card-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: var(--card-content-gap);
+}
+
+.browse-rooms__room-name {
+    font-size: var(--room-name-size);
+    font-weight: var(--room-name-weight);
+    line-height: var(--room-name-line-height);
+    margin: 0;
+    color: var(--text-white);
+}
+
+.browse-rooms__product-count {
+    font-size: var(--product-count-size);
+    font-weight: var(--product-count-weight);
+    opacity: var(--product-count-opacity);
+    color: var(--text-white);
+}
+
+/* Room grid */
+.browse-rooms__grid {
+    display: grid;
+    grid-template-columns: var(--grid-columns);
+    grid-template-rows: var(--grid-rows);
+    gap: var(--grid-gap);
+}
+
+/* Placeholder styling for cards without images */
+.browse-rooms__placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--placeholder-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.browse-rooms__placeholder-text {
+    color: var(--placeholder-text);
+    font-size: var(--room-name-size);
+    font-weight: var(--room-name-weight);
+    opacity: 0.7;
+}
+
+/* Hover effects */
+.browse-rooms--lift .browse-rooms__card:hover {
+    transform: var(--hover-transform);
+    box-shadow: var(--card-hover-shadow);
+}
+
+.browse-rooms--scale .browse-rooms__card:hover {
+    transform: scale(var(--hover-scale));
+}
+
+.browse-rooms--fade .browse-rooms__card:hover .browse-rooms__card-overlay {
+    opacity: 0.2;
+}
+
+/* Layout variants */
+.browse-rooms--featured_right .browse-rooms__content {
+    grid-template-columns: 1.2fr 1fr;
+}
+
+.browse-rooms--featured_right .browse-rooms__featured {
+    order: 2;
+}
+
+.browse-rooms--featured_right .browse-rooms__grid {
+    order: 1;
+}
+
+.browse-rooms--centered .browse-rooms__content {
+    grid-template-columns: 1fr;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.browse-rooms--centered .browse-rooms__grid {
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: var(--grid-gap);
+}
+
+/* Card style variants */
+.browse-rooms--bottom .browse-rooms__card {
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.browse-rooms--bottom .browse-rooms__card-content {
+    margin-top: auto;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 16px;
+    margin: -16px -16px -16px -16px;
+}
+
+.browse-rooms--corner .browse-rooms__card-content {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 12px 16px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.browse-rooms--corner .browse-rooms__room-name {
+    font-size: 1rem;
+}
+
+.browse-rooms--corner .browse-rooms__product-count {
+    font-size: 0.75rem;
+}

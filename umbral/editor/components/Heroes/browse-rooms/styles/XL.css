@@ -1,0 +1,30 @@
+/* Large desktop (≥ 1200px) - Enhanced spacing and typography */
+#{{ component_id }} {
+    /* Enhanced layout variables */
+    --section-padding: 100px;
+    --container-max-width: 1300px;
+    --container-padding: 32px;
+    --content-gap: 80px;
+    --grid-gap: 24px;
+    
+    /* Enhanced header variables */
+    --header-max-width: 700px;
+    --title-font-size: 3.5rem;
+    --title-letter-spacing: -0.025em;
+    --title-margin-bottom: 20px;
+    --description-font-size: 1.25rem;
+    
+    /* Enhanced card variables */
+    --featured-card-height: 580px;
+    --grid-card-height: 280px;
+    --card-border-radius: 28px;
+    --card-padding: 36px;
+    
+    /* Enhanced typography */
+    --room-name-size: 1.75rem;
+    --product-count-size: 1rem;
+    
+    /* Enhanced effects */
+    --hover-transform: translateY(-12px);
+    --card-hover-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+}

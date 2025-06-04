@@ -1,0 +1,47 @@
+/* Large desktop (≥ 1200px) - Enhanced spacing and typography */
+#{{ component_id }} {
+    /* Enhanced layout variables */
+    --hero-padding: 100px;
+    --container-max-width: 1300px;
+    --container-padding: 32px;
+    --content-gap: 80px;
+    --content-min-height: 600px;
+    
+    /* Enhanced text variables */
+    --text-gap: 28px;
+    --title-font-size: 4rem;
+    --title-letter-spacing: -0.025em;
+    --title-margin-bottom: 0 0 20px 0;
+    --subtitle-font-size: 1.375rem;
+    --subtitle-max-width: 520px;
+    --subtitle-margin-bottom: 0 0 40px 0;
+    --experts-gap: 20px;
+    --experts-margin-bottom: 40px;
+    --avatar-size: 44px;
+    --button-padding: 18px 36px;
+    --button-font-size: 1.125rem;
+    --button-min-height: 56px;
+    
+    /* Enhanced cards variables */
+    --cards-height: 580px;
+    --cards-gap: 20px;
+    --card-border-radius: 26px;
+    --card-padding: 28px;
+    --card-info-padding: 18px;
+    --product-name-size: 1.25rem;
+    --product-name-margin: 0 0 6px 0;
+    --product-price-size: 1.125rem;
+    --product-link-size: 52px;
+    --product-link-margin-top: 20px;
+    --arrow-icon-size: 20px;
+    
+    /* Enhanced promo variables */
+    --promo-padding: 36px 28px;
+    --promo-gap: 20px;
+    --promo-title-size: 2.25rem;
+    --promo-title-line-height: 1.15;
+    --promo-desc-size: 1rem;
+    --promo-desc-line-height: 1.5;
+    --promo-button-padding: 14px 28px;
+    --promo-button-size: 1rem;
+}

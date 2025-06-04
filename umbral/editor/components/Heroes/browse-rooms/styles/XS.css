@@ -1,0 +1,63 @@
+/* Mobile styles (< 576px) - Stacked layout */
+#{{ component_id }} {
+    /* Mobile layout variables */
+    --section-padding: 60px;
+    --container-padding: 20px;
+    --content-gap: 40px;
+    --grid-gap: 16px;
+    
+    /* Mobile header variables */
+    --header-gap: 20px;
+    --title-font-size: 2rem;
+    --title-margin-bottom: 12px;
+    --description-font-size: 1rem;
+    
+    /* Mobile card variables */
+    --featured-card-height: 280px;
+    --grid-card-height: 200px;
+    --card-border-radius: 20px;
+    --card-padding: 24px;
+    
+    /* Mobile typography */
+    --room-name-size: 1.25rem;
+    --product-count-size: 0.875rem;
+    
+    /* Mobile grid layout */
+    --grid-columns: 1fr;
+    --featured-grid-template: 1fr;
+}
+
+/* Mobile layout overrides */
+.browse-rooms__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--grid-gap);
+}
+
+.browse-rooms__grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--grid-gap);
+}
+
+.browse-rooms__header {
+    text-align: center;
+    margin-bottom: var(--content-gap);
+}
+
+/* Reset layout variants for mobile */
+.browse-rooms--featured_right .browse-rooms__content,
+.browse-rooms--centered .browse-rooms__content {
+    display: flex;
+    flex-direction: column;
+}
+
+.browse-rooms--featured_right .browse-rooms__featured,
+.browse-rooms--featured_right .browse-rooms__grid {
+    order: unset;
+}
+
+.browse-rooms--centered .browse-rooms__grid {
+    grid-template-columns: 1fr;
+    margin-top: 0;
+}
