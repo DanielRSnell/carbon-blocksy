@@ -1,8 +1,8 @@
 {# Raycast Hero Component Template #}
-{# Styles and scripts are now auto-enqueued by render.php #}
+{# Styles and scripts are auto-enqueued by compileComponent() #}
 
 {# Raycast Hero Component HTML #}
-<section id="{{ component_id }}" class="umbral-raycast-hero">
+<section id="{{ component_id }}" class="umbral-raycast-hero" data-cards-layout="{{ cards_layout }}" data-cards-animation="{{ cards_animation }}">
     
     {# Background with floating elements #}
     <div class="hero-background">
@@ -15,9 +15,10 @@
         <div class="gradient-mesh"></div>
     </div>
     
-    <div class="hero-container blocksy-container">
+    <div class="hero-container">
         
-        {# Feature cards - left side #}
+        {# Feature cards - left side (only for 'sides' layout) #}
+        {% if cards_layout == 'sides' %}
         <div class="feature-cards-left">
             {% set left_cards = feature_cards|slice(0, 2) %}
             {% for card in left_cards %}
@@ -30,15 +31,16 @@
             </div>
             {% endfor %}
         </div>
+        {% endif %}
         
         {# Main hero content #}
-        <div class="hero-main">
+        <div class="hero-main" data-alignment="{{ title_alignment }}">
             
             {# Hero text #}
             <div class="hero-text">
-                <h1 class="hero-title">{{ title }}</h1>
-                {% if subtitle %}
-                <p class="hero-subtitle">{{ subtitle }}</p>
+                <h1 class="hero-title">{{ hero_title }}</h1>
+                {% if hero_subtitle %}
+                <p class="hero-subtitle">{{ hero_subtitle }}</p>
                 {% endif %}
             </div>
             
@@ -51,11 +53,11 @@
                         </svg>
                     </div>
                     <input type="text" class="search-input" placeholder="{{ search_placeholder }}" readonly>
-                    <div class="search-shortcut">⌘K</div>
+                    <div class="search-shortcut">{{ search_shortcut_key }}</div>
                 </div>
                 
                 {# Search shortcuts #}
-                {% if shortcuts %}
+                {% if show_shortcuts_section and shortcuts %}
                 <div class="shortcuts-container">
                     {% for shortcut in shortcuts %}
                     <div class="shortcut-item">
@@ -71,18 +73,21 @@
             {# CTA Button #}
             {% if cta_text %}
             <div class="hero-cta">
-                <a href="{{ cta_url }}" class="cta-button blocksy-button">
+                <a href="{{ cta_url }}" class="cta-button cta-style-{{ cta_style }}">
                     {{ cta_text }}
+                    {% if show_cta_arrow %}
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="cta-arrow">
                         <path d="M3.33334 8H12.6667M12.6667 8L8.00001 3.33333M12.6667 8L8.00001 12.6667" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
+                    {% endif %}
                 </a>
             </div>
             {% endif %}
             
         </div>
         
-        {# Feature cards - right side #}
+        {# Feature cards - right side (only for 'sides' layout) #}
+        {% if cards_layout == 'sides' %}
         <div class="feature-cards-right">
             {% set right_cards = feature_cards|slice(2, 2) %}
             {% for card in right_cards %}
@@ -95,9 +100,38 @@
             </div>
             {% endfor %}
         </div>
+        {% endif %}
         
     </div>
     
+    {# Feature cards - grid below (for 'grid_below' layout) #}
+    {% if cards_layout == 'grid_below' and feature_cards %}
+    <div class="feature-cards-grid">
+        {% for card in feature_cards %}
+        <div class="feature-card card-animate-up">
+            <div class="card-icon">{{ card.icon }}</div>
+            <div class="card-content">
+                <h4 class="card-title">{{ card.title }}</h4>
+                <p class="card-description">{{ card.description }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    
+    {# Feature cards - scattered (for 'scattered' layout) #}
+    {% if cards_layout == 'scattered' and feature_cards %}
+    <div class="feature-cards-scattered">
+        {% for card in feature_cards %}
+        <div class="feature-card card-scattered card-{{ loop.index }}">
+            <div class="card-icon">{{ card.icon }}</div>
+            <div class="card-content">
+                <h4 class="card-title">{{ card.title }}</h4>
+                <p class="card-description">{{ card.description }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    
 </section>
-
-{# Component JavaScript is now auto-enqueued by render.php #}

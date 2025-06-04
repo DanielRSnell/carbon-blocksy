@@ -1,26 +1,27 @@
-/* Raycast Hero - Large desktop (≥ 1200px) */
+/* Raycast Hero - Large Desktop Variable Overrides (≥ 1200px) */
 
+/* Override component variables for large desktop - all CSS rules are in LG.css */
+#{{ component_id }} {
+    /* Large desktop typography scale */
+    --hero-font-size-4xl: 4rem;         /* Larger hero title */
+    --hero-font-size-xl: 1.5rem;        /* Larger subtitle */
+    
+    /* Large desktop spacing adjustments */
+    --hero-spacing-3xl: calc(var(--theme-content-spacing) * 4); /* Maximum top/bottom padding */
+    --hero-spacing-2xl: calc(var(--theme-content-spacing) * 3.5); /* Larger spacing */
+    
+    /* Container adjustments */
+    --hero-container-max-width: 1400px; /* Wider container */
+    --hero-content-max-width: 700px;    /* Wider content area */
+}
+
+/* Large desktop layout - more spacing */
 .umbral-raycast-hero .hero-container {
-    gap: calc(var(--hero-spacing) * 4);
-    padding: 0 var(--hero-spacing-2xl);
+    gap: var(--hero-spacing-3xl);       /* Larger gaps between grid areas */
 }
 
-.umbral-raycast-hero .hero-title {
-    font-size: 4.5rem;
-}
-
-.umbral-raycast-hero .command-palette {
-    max-width: 700px;
-    padding: var(--hero-spacing-2xl);
-}
-
-.umbral-raycast-hero .floating-element {
-    width: 36px;
-    height: 36px;
-}
-
-.umbral-raycast-hero .feature-cards-left .feature-card,
-.umbral-raycast-hero .feature-cards-right .feature-card {
-    max-width: 320px;
-    padding: var(--hero-spacing-xl);
+/* Feature cards layout adjustments */
+.umbral-raycast-hero[data-cards-layout="grid_below"] .feature-cards-grid {
+    grid-template-columns: repeat(4, 1fr); /* Four columns on large desktop */
+    gap: var(--hero-spacing-xl);            /* Larger gaps */
 }

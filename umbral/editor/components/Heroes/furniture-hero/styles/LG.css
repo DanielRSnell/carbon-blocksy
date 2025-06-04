@@ -100,7 +100,6 @@
 .furniture-hero__text-section {
     display: flex;
     flex-direction: column;
-    gap: var(--text-gap);
 }
 
 .furniture-hero__title {

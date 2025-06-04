@@ -1,27 +1,38 @@
-/* Raycast Hero - Tablets (≥ 768px) */
+/* Raycast Hero - Tablet Variable Overrides (≥ 768px) */
 
+/* Override component variables for tablets - all CSS rules are in LG.css */
+#{{ component_id }} {
+    /* Tablet typography scale */
+    --hero-font-size-4xl: 3.25rem;      /* Larger hero title */
+    --hero-font-size-xl: 1.375rem;      /* Larger subtitle */
+    
+    /* Tablet spacing adjustments */
+    --hero-spacing-3xl: calc(var(--theme-content-spacing) * 3); /* More top/bottom padding */
+    
+    /* Container adjustments */
+    --hero-content-max-width: 600px;    /* Wider content area */
+    --hero-floating-size: 28px;         /* Slightly larger floating elements */
+}
+
+/* Tablet layout adjustments */
 .umbral-raycast-hero .hero-container {
-    padding: 0 var(--hero-spacing-lg);
+    grid-template-columns: 1fr;          /* Still single column until desktop */
+    gap: var(--hero-spacing-2xl);
+    padding: 0 var(--hero-spacing-xl);   /* More side padding */
 }
 
-.umbral-raycast-hero .command-palette {
-    max-width: 600px;
-    padding: var(--hero-spacing-xl);
+/* Feature cards layout for tablets */
+.umbral-raycast-hero[data-cards-layout="grid_below"] .feature-cards-grid {
+    grid-template-columns: repeat(3, 1fr); /* Three columns on tablets */
 }
 
-.umbral-raycast-hero .hero-title {
-    font-size: 3.5rem;
+/* Enable scattered layout on tablets */
+.umbral-raycast-hero[data-cards-layout="scattered"] .feature-cards-scattered {
+    display: block;
 }
 
-.umbral-raycast-hero .hero-subtitle {
-    font-size: 1.25rem;
-}
-
+/* Floating elements size override */
 .umbral-raycast-hero .floating-element {
-    width: 28px;
-    height: 28px;
-}
-
-.umbral-raycast-hero .shortcut-item {
-    min-width: 160px;
+    width: var(--hero-floating-size);
+    height: var(--hero-floating-size);
 }

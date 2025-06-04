@@ -1,296 +1,63 @@
-/* Raycast Hero - Mobile styles (< 576px) */
-/* CSS variables are defined in LG.css (base styles) */
+/* Raycast Hero - Mobile Variable Overrides (< 576px) */
 
-.umbral-raycast-hero {
-    background: var(--hero-bg-gradient);
-    padding: var(--hero-spacing-2xl) 0;
+/* Override component variables for mobile - all CSS rules are in LG.css */
+#{{ component_id }} {
+    /* Mobile typography scale */
+    --hero-font-size-4xl: 2.25rem;      /* Smaller hero title */
+    --hero-font-size-xl: 1.125rem;      /* Smaller subtitle */
+    --hero-font-size-2xl: 1.5rem;       /* Smaller card icons */
+    
+    /* Mobile spacing adjustments */
+    --hero-spacing-3xl: calc(var(--theme-content-spacing) * 2);  /* Reduced top/bottom padding */
+    --hero-spacing-2xl: calc(var(--theme-content-spacing) * 1.5); /* Reduced large spacing */
+    
+    /* Mobile container adjustments */
+    --hero-container-max-width: 100%;
+    --hero-content-max-width: 100%;
+    --hero-card-max-width: 100%;
+    
+    /* Floating elements smaller on mobile */
+    --hero-floating-size: 20px;
 }
 
-/* Background Elements */
-.umbral-raycast-hero .hero-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 0;
-}
-
-.umbral-raycast-hero .gradient-mesh {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(ellipse at top left, rgba(59, 130, 246, 0.3) 0%, transparent 50%),
-                radial-gradient(ellipse at top right, rgba(139, 92, 246, 0.3) 0%, transparent 50%),
-                radial-gradient(ellipse at bottom left, rgba(16, 185, 129, 0.3) 0%, transparent 50%);
-}
-
-/* Floating Elements */
-.umbral-raycast-hero .floating-elements {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1;
-    pointer-events: none;
-}
-
-.umbral-raycast-hero .floating-element {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-    animation: float 6s ease-in-out infinite;
-}
-
-.umbral-raycast-hero .floating-1 {
-    top: 20%;
-    left: 10%;
-    animation-delay: 0s;
-}
-
-.umbral-raycast-hero .floating-2 {
-    top: 60%;
-    right: 15%;
-    animation-delay: 2s;
-}
-
-.umbral-raycast-hero .floating-3 {
-    bottom: 30%;
-    left: 20%;
-    animation-delay: 4s;
-}
-
-.umbral-raycast-hero .floating-4 {
-    top: 40%;
-    right: 30%;
-    animation-delay: 1s;
-}
-
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0px) rotate(0deg);
-        opacity: 0.3;
-    }
-    50% {
-        transform: translateY(-20px) rotate(180deg);
-        opacity: 0.8;
-    }
-}
-
-/* Container */
+/* Mobile-specific layout overrides */
 .umbral-raycast-hero .hero-container {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--hero-spacing-xl);
-    align-items: center;
-    padding: 0 var(--hero-spacing);
+    grid-template-columns: 1fr;          /* Single column layout */
+    gap: var(--hero-spacing-xl);         /* Smaller gaps */
+    padding: 0 var(--hero-spacing);      /* Side padding */
 }
 
-/* Main Content */
-.umbral-raycast-hero .hero-main {
-    text-align: center;
-    order: 2;
-}
-
-/* Typography */
-.umbral-raycast-hero .hero-title {
-    font-size: 2.25rem;
-    font-weight: 700;
-    font-family: var(--theme-font-family);
-    line-height: 1.1;
-    margin-bottom: var(--hero-spacing-lg);
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.7));
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.umbral-raycast-hero .hero-subtitle {
-    font-size: 1.125rem;
-    font-family: var(--theme-font-family);
-    color: rgba(255, 255, 255, 0.8);
-    margin-bottom: var(--hero-spacing-2xl);
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.6;
-}
-
-/* Command Palette */
-.umbral-raycast-hero .command-palette {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: var(--hero-border-radius-xl);
-    padding: var(--hero-spacing-lg);
-    margin-bottom: var(--hero-spacing-2xl);
-    box-shadow: var(--hero-shadow-xl);
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Search Container */
-.umbral-raycast-hero .search-container {
-    display: flex;
-    align-items: center;
-    gap: var(--hero-spacing);
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: var(--hero-border-radius-lg);
-    padding: var(--hero-spacing);
-    margin-bottom: var(--hero-spacing-lg);
-}
-
-.umbral-raycast-hero .search-icon {
-    color: rgba(255, 255, 255, 0.6);
-    flex-shrink: 0;
-}
-
-.umbral-raycast-hero .search-input {
-    flex: 1;
-    background: transparent;
-    border: none;
-    outline: none;
-    font-size: var(--theme-font-size);
-    font-family: var(--theme-font-family);
-    color: rgba(255, 255, 255, 0.9);
-    cursor: pointer;
-}
-
-.umbral-raycast-hero .search-input::placeholder {
-    color: rgba(255, 255, 255, 0.5);
-}
-
-.umbral-raycast-hero .search-shortcut {
-    background: rgba(255, 255, 255, 0.2);
-    color: rgba(255, 255, 255, 0.8);
-    padding: calc(var(--hero-spacing) * 0.25) calc(var(--hero-spacing) * 0.5);
-    border-radius: var(--hero-border-radius);
-    font-size: 0.875rem;
-    font-family: monospace;
-    font-weight: 500;
-}
-
-/* Shortcuts */
-.umbral-raycast-hero .shortcuts-container {
-    display: flex;
-    flex-direction: column;
-    gap: calc(var(--hero-spacing) * 0.25);
-}
-
-.umbral-raycast-hero .shortcut-item {
-    display: flex;
-    align-items: center;
-    gap: var(--hero-spacing);
-    padding: calc(var(--hero-spacing) * 0.5);
-    border-radius: var(--hero-border-radius);
-    background: rgba(255, 255, 255, 0.05);
-    transition: var(--hero-transition);
-    cursor: pointer;
-}
-
-.umbral-raycast-hero .shortcut-item:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateX(4px);
-}
-
-.umbral-raycast-hero .shortcut-icon {
-    font-size: var(--theme-font-size);
-    flex-shrink: 0;
-}
-
-.umbral-raycast-hero .shortcut-text {
-    flex: 1;
-    font-size: 0.875rem;
-    font-family: var(--theme-font-family);
-    color: rgba(255, 255, 255, 0.9);
-}
-
-.umbral-raycast-hero .shortcut-key {
-    font-size: 0.75rem;
-    font-family: monospace;
-    color: rgba(255, 255, 255, 0.6);
-    background: rgba(255, 255, 255, 0.1);
-    padding: 2px calc(var(--hero-spacing) * 0.25);
-    border-radius: 4px;
-}
-
-/* CTA Button */
-.umbral-raycast-hero .hero-cta {
-    margin-bottom: var(--hero-spacing-xl);
-}
-
-.umbral-raycast-hero .cta-button {
-    display: inline-flex;
-    align-items: center;
-    gap: calc(var(--hero-spacing) * 0.5);
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    padding: var(--hero-spacing) var(--hero-spacing-xl);
-    font-size: var(--theme-font-size);
-    font-weight: 600;
-    text-decoration: none;
-    border-radius: var(--hero-border-radius-lg);
-    backdrop-filter: blur(10px);
-    transition: var(--hero-transition);
-}
-
-.umbral-raycast-hero .cta-button:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: translateY(-2px);
-    box-shadow: var(--hero-shadow-lg);
-}
-
-.umbral-raycast-hero .cta-arrow {
-    transition: var(--hero-transition);
-}
-
-.umbral-raycast-hero .cta-button:hover .cta-arrow {
-    transform: translateX(4px);
-}
-
-/* Feature Cards - Hidden on mobile */
-.umbral-raycast-hero .feature-cards-left,
-.umbral-raycast-hero .feature-cards-right {
+/* Hide feature cards on mobile for sides layout */
+.umbral-raycast-hero[data-cards-layout="sides"] .feature-cards-left,
+.umbral-raycast-hero[data-cards-layout="sides"] .feature-cards-right {
     display: none;
 }
 
-/* Basic card styles for when they appear */
-.umbral-raycast-hero .feature-card {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: var(--hero-border-radius-lg);
-    padding: var(--hero-spacing-lg);
-    transition: var(--hero-transition);
+/* Grid below layout adjustments for mobile */
+.umbral-raycast-hero[data-cards-layout="grid_below"] .feature-cards-grid {
+    grid-template-columns: 1fr;          /* Single column grid on mobile */
+    gap: var(--hero-spacing);            /* Smaller gaps */
 }
 
-.umbral-raycast-hero .card-icon {
-    font-size: 1.5rem;
-    margin-bottom: var(--hero-spacing);
+/* Scattered layout - disable on mobile for better UX */
+.umbral-raycast-hero[data-cards-layout="scattered"] .feature-cards-scattered {
+    display: none;
 }
 
-.umbral-raycast-hero .card-title {
-    font-size: 1.125rem;
-    font-weight: 600;
-    font-family: var(--theme-font-family);
-    color: rgba(255, 255, 255, 0.95);
-    margin-bottom: calc(var(--hero-spacing) * 0.5);
+/* Floating elements size override */
+.umbral-raycast-hero .floating-element {
+    width: var(--hero-floating-size);
+    height: var(--hero-floating-size);
 }
 
-.umbral-raycast-hero .card-description {
-    font-size: 0.875rem;
-    font-family: var(--theme-font-family);
-    color: rgba(255, 255, 255, 0.7);
-    line-height: 1.5;
+/* Command palette mobile adjustments */
+.umbral-raycast-hero .command-palette {
+    max-width: 500px;                    /* Smaller max width */
+    padding: var(--hero-spacing-lg);     /* Reduced padding */
+}
+
+/* Always center text on mobile regardless of alignment setting */
+.umbral-raycast-hero .hero-main[data-alignment="left"],
+.umbral-raycast-hero .hero-main[data-alignment="right"] {
+    text-align: center;
 }

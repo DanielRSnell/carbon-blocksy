@@ -1,25 +1,26 @@
-/* Raycast Hero - Small tablets (≥ 576px) */
+/* Raycast Hero - Small Tablet Variable Overrides (≥ 576px) */
 
-.umbral-raycast-hero .hero-title {
-    font-size: 3rem;
+/* Override component variables for small tablets - all CSS rules are in LG.css */
+#{{ component_id }} {
+    /* Small tablet typography scale */
+    --hero-font-size-4xl: 2.75rem;      /* Slightly larger hero title */
+    --hero-font-size-xl: 1.25rem;       /* Slightly larger subtitle */
+    
+    /* Small tablet spacing adjustments */
+    --hero-spacing-3xl: calc(var(--theme-content-spacing) * 2.5); /* Moderate top/bottom padding */
+    
+    /* Container adjustments */
+    --hero-content-max-width: 550px;    /* Slightly wider content */
 }
 
-.umbral-raycast-hero .command-palette {
-    max-width: 550px;
+/* Small tablet layout adjustments */
+.umbral-raycast-hero .hero-container {
+    grid-template-columns: 1fr;          /* Still single column */
+    gap: var(--hero-spacing-xl);
+    padding: 0 var(--hero-spacing-lg);   /* Slightly more side padding */
 }
 
-.umbral-raycast-hero .shortcuts-container {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: calc(var(--hero-spacing) * 0.5);
-}
-
-.umbral-raycast-hero .shortcut-item {
-    flex: 1;
-    min-width: 180px;
-}
-
-.umbral-raycast-hero .floating-element {
-    width: 24px;
-    height: 24px;
+/* Show feature cards in grid below layout only */
+.umbral-raycast-hero[data-cards-layout="grid_below"] .feature-cards-grid {
+    grid-template-columns: repeat(2, 1fr); /* Two columns on small tablets */
 }

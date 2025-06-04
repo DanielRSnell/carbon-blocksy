@@ -1,41 +1,41 @@
-/* Raycast Hero - Extra large desktop (≥ 1400px) */
+/* Raycast Hero - Extra Large Desktop Variable Overrides (≥ 1400px) */
 
+/* Override component variables for extra large desktop - all CSS rules are in LG.css */
+#{{ component_id }} {
+    /* Extra large desktop typography scale - more conservative */
+    --hero-font-size-4xl: 4rem;         /* Slightly smaller than before */
+    --hero-font-size-xl: 1.5rem;        /* Keep subtitle reasonable */
+    
+    /* Extra large desktop spacing - reduced for better proportion */
+    --hero-spacing-3xl: calc(var(--theme-content-spacing) * 3.5); /* Reduced from 5 to 3.5 */
+    --hero-spacing-2xl: calc(var(--theme-content-spacing) * 2.5); /* Reduced from 4 to 2.5 */
+    --hero-spacing-lg: calc(var(--theme-content-spacing) * 1.2);  /* Reduce gap between title/subtitle */
+    
+    /* Container adjustments for ultra-wide screens */
+    --hero-container-max-width: 1400px; /* Reduced from 1600px */
+    --hero-content-max-width: 700px;    /* Reduced from 800px */
+    --hero-card-max-width: 300px;       /* Slightly smaller cards */
+    --hero-floating-size: 36px;         /* Smaller floating elements */
+}
+
+/* Extra large desktop layout - more reasonable spacing */
 .umbral-raycast-hero .hero-container {
-    gap: calc(var(--hero-spacing) * 6);
-    padding: 0 calc(var(--hero-spacing) * 4);
+    gap: var(--hero-spacing-2xl);       /* Use standard 2xl gap, not multiplied */
+    padding: 0 var(--hero-spacing-xl);   /* Reduced side padding */
 }
 
-.umbral-raycast-hero .hero-title {
-    font-size: 5rem;
-    margin-bottom: var(--hero-spacing-2xl);
+/* Feature cards get reasonable padding */
+.umbral-raycast-hero .feature-card {
+    padding: var(--hero-spacing-xl);     /* Reduced from 2xl */
 }
 
-.umbral-raycast-hero .hero-subtitle {
-    font-size: 1.5rem;
-    margin-bottom: calc(var(--hero-spacing) * 4);
-}
-
+/* Command palette gets reasonable size */
 .umbral-raycast-hero .command-palette {
-    max-width: 750px;
+    padding: var(--hero-spacing-xl);     /* Reduced from 2xl */
 }
 
+/* Floating elements size override */
 .umbral-raycast-hero .floating-element {
-    width: 40px;
-    height: 40px;
-}
-
-.umbral-raycast-hero .feature-cards-left .feature-card,
-.umbral-raycast-hero .feature-cards-right .feature-card {
-    max-width: 360px;
-    padding: var(--hero-spacing-2xl);
-}
-
-/* Enhanced spacing for ultra-wide screens */
-.umbral-raycast-hero .hero-cta {
-    margin-bottom: var(--hero-spacing-2xl);
-}
-
-.umbral-raycast-hero .cta-button {
-    padding: var(--hero-spacing-lg) var(--hero-spacing-2xl);
-    font-size: 1.125rem;
+    width: var(--hero-floating-size);
+    height: var(--hero-floating-size);
 }
